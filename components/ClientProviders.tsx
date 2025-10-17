@@ -1,6 +1,7 @@
 // components/ClientProviders.tsx
 "use client";
 import * as React from "react";
+import { ThemeProvider } from "next-themes";
 import { DefaultSeo } from "next-seo";
 import SEO from "@/next-seo.config";
 import { ToastProvider, useToast } from "@/components/ui/use-toast";
@@ -23,14 +24,12 @@ function ToastMount() {
 
 export default function ClientProviders({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      {/* Client-side SEO tags (next-seo) */}
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
       <DefaultSeo {...SEO} />
-      {/* Toast context & portal */}
       <ToastProvider>
         {children}
         <ToastMount />
       </ToastProvider>
-    </>
+    </ThemeProvider>
   );
 }
