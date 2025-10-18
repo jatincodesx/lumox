@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
 
 export function Hero() {
@@ -18,8 +19,19 @@ export function Hero() {
             dashboards, and secure campus networks- backed by sensible SLAs and clear documentation.
           </p>
           <div className="mt-6 flex gap-3">
-            <Button asChild><Link href="/contact">Work with us</Link></Button>
-            <Button asChild variant="outline"><Link href="/projects">View projects</Link></Button>
+            <Link
+              href="/contact"
+              className={buttonVariants({ variant: "primary", size: "md" })}
+            >
+              Work with us
+            </Link>
+
+            <Link
+              href="/projects"
+              className={buttonVariants({ variant: "outline", size: "md" })}
+            >
+              View projects
+            </Link>
           </div>
         </div>
 

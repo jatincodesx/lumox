@@ -1,38 +1,28 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: ["class"],
-  content: [
-    "./app/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-  ],
+  darkMode: ["class"], // important (next-themes toggles <html class="dark">)
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        ink: "hsl(var(--lumox-ink))",
-        bg: "hsl(var(--lumox-bg))",
-        primary: "hsl(var(--lumox-primary))",
-        secondary: "hsl(var(--lumox-secondary))",
-        accent: "hsl(var(--lumox-accent))",
-        warm: "hsl(var(--lumox-warm))",
-        muted: "hsl(var(--lumox-muted))",
-        soft: "hsl(var(--lumox-soft))",
-      },
-      borderRadius: {
-        xl: "1rem",
-        "2xl": "1.25rem",
+        // map Tailwind color names -> your CSS variables
+        bg:        "hsl(var(--lumox-bg) / <alpha-value>)",
+        ink:       "hsl(var(--lumox-ink) / <alpha-value>)",
+        primary:   "hsl(var(--lumox-primary) / <alpha-value>)",
+        secondary: "hsl(var(--lumox-secondary) / <alpha-value>)",
+        accent:    "hsl(var(--lumox-accent) / <alpha-value>)",
+        warm:      "hsl(var(--lumox-warm) / <alpha-value>)",
+        muted:     "hsl(var(--lumox-muted) / <alpha-value>)",
+        soft:      "hsl(var(--lumox-soft) / <alpha-value>)",
       },
       boxShadow: {
-        soft: "0 10px 30px rgba(2,12,27,0.06)",
-      },
-      backgroundImage: {
-        "hero-gradient":
-          "radial-gradient(1200px 600px at 80% -20%, rgba(0,188,235,0.15), transparent), radial-gradient(800px 400px at -10% 20%, rgba(11,95,255,0.20), transparent)",
-        "cta-gradient":
-          "linear-gradient(135deg, rgba(0,188,235,0.10), rgba(11,95,255,0.10))",
+        // you were using shadow-soft; define it here
+        soft: "0 10px 30px -15px hsl(var(--lumox-ink) / 0.2)",
       },
     },
   },
   plugins: [],
 };
+
 export default config;

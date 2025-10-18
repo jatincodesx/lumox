@@ -4,46 +4,46 @@
 
 /* Light theme tokens */
 :root {
-  --lumox-bg:        220 40% 98%;   /* #F5F7FA */
-  --lumox-ink:       222 47% 11%;   /* #0F172A */
-  --lumox-primary:   190 100% 46%;  /* #00BCEB */
-  --lumox-secondary: 221 100% 52%;  /* #0B5FFF */
-  --lumox-accent:    136 64% 58%;   /* #4CDA64 */
-  --lumox-warm:      14 100% 67%;   /* #FF7A59 */
-  --lumox-muted:     220 14% 90%;   /* #E5E7EB */
-  --lumox-soft:      220 40% 98%;   /* #F5F7FA */
+  --lumox-bg:        220 40% 98%;
+  --lumox-ink:       222 47% 11%;
+  --lumox-primary:   190 100% 46%;
+  --lumox-secondary: 221 100% 52%;
+  --lumox-accent:    136 64% 58%;
+  --lumox-warm:      14 100% 67%;
+  --lumox-muted:     220 14% 90%;
+  --lumox-soft:      220 40% 98%;
 }
 
 /* Dark theme tokens */
 .dark {
-  --lumox-bg:        225 46% 8%;    /* #0B1220 */
-  --lumox-ink:       220 40% 96%;   /* near-white */
-  --lumox-primary:   190 100% 50%;  /* brighter cyan */
+  --lumox-bg:        225 46% 8%;
+  --lumox-ink:       220 40% 96%;
+  --lumox-primary:   190 100% 50%;
   --lumox-secondary: 221 100% 60%;
   --lumox-accent:    136 64% 58%;
   --lumox-warm:      14 100% 67%;
-  --lumox-muted:     220 14% 24%;   /* darker border */
+  --lumox-muted:     220 14% 24%;
   --lumox-soft:      225 46% 8%;
 }
 
 html { scroll-behavior: smooth; }
 body {
+  /* use token utilities that we mapped in tailwind.config */
   @apply bg-soft text-ink antialiased;
 }
 
 /* Utilities */
-.container-prose {
-  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-.section {
-  @apply pt-24 pb-24;
-}
+.container-prose { @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8; }
+.section { @apply pt-24 pb-24; }
+
+/* IMPORTANT: stop hard-coding light backgrounds */
 .card {
-  @apply rounded-2xl shadow-soft bg-white dark:bg-[#0f172a] border border-muted/50;
+  /* before: bg-white dark:bg-[#0f172a] */
+  @apply rounded-2xl shadow-soft bg-bg border border-muted/50;
 }
-.eyebrow {
-  @apply text-xs uppercase tracking-wider text-secondary font-medium;
-}
+
+/* Tokens already handle dark mode; no need for dark: overrides here */
+.eyebrow { @apply text-xs uppercase tracking-wider text-secondary font-medium; }
 
 /* Focus rings */
 *:focus-visible {
@@ -51,7 +51,8 @@ body {
   outline-offset: 2px;
 }
 
-/* Translucent navbar backdrop */
+/* Translucent navbar backdrop (use tokens, not raw hex) */
 .nav-blur {
-  @apply bg-white/60 dark:bg-[#0b1220]/60 backdrop-blur-md border-b border-muted/50;
+  /* before: bg-white/60 dark:bg-[#0b1220]/60 */
+  @apply bg-bg/60 backdrop-blur-md border-b border-muted/50;
 }

@@ -29,3 +29,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   )
 );
 Button.displayName = "Button";
+
+/* ✅ Add these exports so you can style links like buttons */
+export type ButtonVariants = VariantProps<typeof buttonStyles>;
+export const buttonVariants = (opts?: ButtonVariants) => buttonStyles(opts);

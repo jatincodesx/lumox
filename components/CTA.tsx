@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button";
+//import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 export function CTA() {
   return (
@@ -10,9 +11,13 @@ export function CTA() {
             <h3 className="text-2xl font-semibold">Ready to ship with confidence?</h3>
             <p className="text-ink/80 mt-2">Let’s align on scope and deliverables, then get to work.</p>
           </div>
-          <Button asChild variant="warm" size="lg">
-            <Link href="/contact">Work with us</Link>
-          </Button>
+
+        <Link
+          href="/contact"
+          className={buttonVariants({ variant: "warm", size: "lg" })}
+        >
+          Work with us
+        </Link>
         </div>
       </div>
     </section>

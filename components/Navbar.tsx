@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { NAV } from "@/lib/seo";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button"; // ✅ use variants helper
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
@@ -11,6 +11,7 @@ import { ThemeToggle } from "./ThemeToggle";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -37,14 +38,21 @@ export function Navbar() {
           <img src="/logo.svg" alt="Lumox" className="h-6" />
         </Link>
 
+        {/* Desktop */}
         <div className="hidden md:flex items-center gap-1">
           {NAV.map((i) => <LinkItem key={i.href} {...i} />)}
           <div className="mx-2"><ThemeToggle /></div>
-          <Button asChild variant="warm" size="sm">
-            <Link href="/contact">Work with us</Link>
-          </Button>
+
+          {/* Link styled like a button (no asChild) */}
+          <Link
+            href="/contact"
+            className={buttonVariants({ variant: "warm", size: "sm" })}
+          >
+            Work with us
+          </Link>
         </div>
 
+        {/* Mobile */}
         <div className="md:hidden flex items-center gap-2">
           <ThemeToggle />
           <Sheet>
@@ -58,9 +66,14 @@ export function Navbar() {
                     {i.label}
                   </Link>
                 ))}
-                <Button asChild variant="warm" className="mt-2">
-                  <Link href="/contact">Work with us</Link>
-                </Button>
+
+                {/* ⬇️ Link styled like a button (no asChild) */}
+                <Link
+                  href="/contact"
+                  className={`${buttonVariants({ variant: "warm", size: "md" })} mt-2`}
+                >
+                  Work with us
+                </Link>
               </div>
             </SheetContent>
           </Sheet>
