@@ -16,7 +16,7 @@ Production-ready marketing site (Next.js 14 + TypeScript + Tailwind) with a Cisc
 pnpm install
 cp env.example .env.local
 # Set FORMSPREE_FORM_ID
-pnpm dev
+npm run dev
 ```
 
 ## Build & Run
