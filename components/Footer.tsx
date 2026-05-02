@@ -28,7 +28,7 @@ export function Footer() {
         <div>
           <h4 className="font-semibold mb-2">Contact</h4>
           <p className="text-sm">Canberra, ACT</p>
-          <p className="text-sm"><a href="mailto:hello@lumox.au" className="hover:text-secondary">hello@lumox.au</a></p>
+          <p className="text-sm"><a href="mailto:jatin@jatinvohra.com" className="hover:text-secondary">jatin@jatinvohra.com</a></p>
         </div>
       </div>
       <div className="border-t border-muted/60 py-4 text-center text-xs text-ink/60">

@@ -16,7 +16,7 @@ export default function PrivacyPage() {
       </ul>
       <h2>Retention & access</h2>
       <p>We keep data only as long as needed for delivery or legal obligations. Ask us for a copy or deletion at any time.</p>
-      <p>Contact: <a href="mailto:hello@lumox.au">hello@lumox.au</a></p>
+      <p>Contact: <a href="mailto:jatin@jatinvohra.com">jatin@jatinvohra.com</a></p>
     </div>
   );
 }
