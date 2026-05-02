@@ -5,3 +5,11 @@ out
 .DS_Store
 dist
 coverage
+deploy/
+*.zip
+.vercel
+.turbo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
