@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export const Tabs = TabsPrimitive.Root;
 export const TabsList = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("inline-flex rounded-xl border border-muted/60 p-1 bg-white dark:bg-[#0f172a]", className)} {...props} />
+  <div className={cn("inline-flex rounded-lg border border-muted/60 p-1 bg-bg", className)} {...props} />
 );
 export const TabsTrigger = React.forwardRef<
   HTMLButtonElement,

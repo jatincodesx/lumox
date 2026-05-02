@@ -18,7 +18,7 @@ export function ThemeToggle() {
     setDark(next);
   };
   return (
-    <button aria-label="Toggle theme" onClick={toggle} className="rounded-xl p-2 hover:bg-secondary/10">
+    <button aria-label="Toggle theme" onClick={toggle} className="rounded-lg p-2 hover:bg-secondary/10">
       {dark ? <Sun size={18} /> : <Moon size={18} />}
     </button>
   );

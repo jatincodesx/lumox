@@ -2,6 +2,14 @@
 import * as React from "react";
 import * as ToastPrimitive from "@radix-ui/react-toast";
 
+type ToastProps = {
+  title?: string;
+  description?: string;
+  open: boolean;
+  onOpenChange: React.Dispatch<boolean>;
+  tone?: "default" | "success" | "error";
+};
+
 export function Toaster({ children }: { children?: React.ReactNode }) {
   return (
     <ToastPrimitive.Provider swipeDirection="right">
@@ -17,17 +25,11 @@ export function Toast({
   open,
   onOpenChange,
   tone = "default",
-}: {
-  title?: string;
-  description?: string;
-  open: boolean;
-  onOpenChange: (v: boolean) => void;
-  tone?: "default" | "success" | "error";
-}) {
+}: ToastProps) {
   const bg =
     tone === "success" ? "bg-accent text-white" : tone === "error" ? "bg-warm text-white" : "bg-secondary text-white";
   return (
-    <ToastPrimitive.Root open={open} onOpenChange={onOpenChange} className={`${bg} rounded-xl p-4 shadow-soft`}>
+    <ToastPrimitive.Root open={open} onOpenChange={onOpenChange} className={`${bg} rounded-lg p-4 shadow-soft`}>
       {title && <ToastPrimitive.Title className="font-semibold">{title}</ToastPrimitive.Title>}
       {description && <ToastPrimitive.Description className="text-sm opacity-90">{description}</ToastPrimitive.Description>}
     </ToastPrimitive.Root>

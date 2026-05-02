@@ -2,12 +2,12 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-muted/60">
+    <footer className="border-t border-muted/60 bg-bg">
       <div className="container-prose py-10 grid gap-8 md:grid-cols-4">
         <div className="space-y-3">
-          <img src="/logo.svg" alt="Lumox" className="h-6" />
+          <img src="/logo.svg" alt="Lumox Technologies logo" className="h-6" />
           <p className="text-sm text-ink/70">
-            Software & network solutions you can trust.
+            Practical websites, web applications, automation tools, AI systems, and technical consulting.
           </p>
         </div>
         <div>
@@ -15,14 +15,15 @@ export function Footer() {
           <ul className="space-y-1 text-sm">
             <li><Link href="/about" className="hover:text-secondary">About</Link></li>
             <li><Link href="/projects" className="hover:text-secondary">Projects</Link></li>
+            <li><Link href="/#fitplus" className="hover:text-secondary">FitPlus</Link></li>
             <li><Link href="/careers" className="hover:text-secondary">Careers</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="font-semibold mb-2">Legal</h4>
           <ul className="space-y-1 text-sm">
-            <li><Link href="/legal/privacy" className="hover:text-secondary">Privacy</Link></li>
-            <li><Link href="/legal/terms" className="hover:text-secondary">Terms</Link></li>
+            <li><Link href="/privacy" className="hover:text-secondary">Privacy</Link></li>
+            <li><Link href="/terms" className="hover:text-secondary">Terms</Link></li>
           </ul>
         </div>
         <div>

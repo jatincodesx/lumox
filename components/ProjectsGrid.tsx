@@ -3,6 +3,13 @@ import { ProjectCard } from "./ProjectCard";
 export function ProjectsGrid() {
   const items = [
     {
+      title: "FitPlus",
+      summary:
+        "Fitness and nutrition platform for workout planning, meal management, progress tracking, and consistency.",
+      details:
+        "FitPlus is a featured Lumox product designed to help users plan workouts, manage meals, track progress, and stay consistent with their health goals.",
+    },
+    {
       title: "SafeView",
       summary:
         "Privacy-first childcare video with per-child secure streams and audit trails.",

@@ -1,11 +1,19 @@
 import { SectionHeader } from "@/components/SectionHeader";
 import { Timeline } from "@/components/Timeline";
 
+export const metadata = {
+  title: "About",
+  description:
+    "Lumox Technologies is a Canberra-based technology services company building practical websites, apps, automation, and AI-powered systems.",
+};
+
 export default function AboutPage() {
   return (
     <div className="section">
       <SectionHeader eyebrow="About" title="Mission & values"
-        sub="We help teams deliver software and networks that are maintainable, observable, and safe." />
+        sub="We help teams deliver digital systems that are maintainable, understandable, and useful."
+        level="h1"
+      />
       <div className="grid gap-6 md:grid-cols-2">
         <div className="card p-6">
           <h3 className="text-lg font-semibold mb-2">What we believe</h3>
@@ -19,8 +27,7 @@ export default function AboutPage() {
         <div className="card p-6">
           <h3 className="text-lg font-semibold mb-2">Leadership</h3>
           <p className="text-sm text-ink/80">
-            Led by engineers with hands-on experience shipping apps and standing up collaboration
-            networks. Canberra-based, working with Australian teams.
+            Canberra-based and focused on practical digital delivery for Australian businesses.
           </p>
         </div>
       </div>

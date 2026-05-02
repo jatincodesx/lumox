@@ -3,9 +3,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { NAV } from "@/lib/seo";
-import { buttonVariants } from "@/components/ui/button"; // ✅ use variants helper
+import { buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { ArrowRight, Menu } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function Navbar() {
@@ -22,10 +22,7 @@ export function Navbar() {
   const LinkItem = ({ href, label }: { href: string; label: string }) => {
     const active = pathname === href;
     return (
-      <Link
-        href={href}
-        className={`px-3 py-2 rounded-lg hover:bg-secondary/10 ${active ? "text-secondary" : ""}`}
-      >
+      <Link href={href} className={`px-3 py-2 rounded-lg text-sm hover:bg-secondary/10 ${active ? "text-secondary" : ""}`}>
         {label}
       </Link>
     );
@@ -35,28 +32,26 @@ export function Navbar() {
     <div className={`sticky top-0 z-50 ${scrolled ? "nav-blur" : ""}`}>
       <nav className="container-prose flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <img src="/logo.svg" alt="Lumox" className="h-6" />
+          <img src="/logo.svg" alt="Lumox Technologies logo" className="h-6" />
         </Link>
 
-        {/* Desktop */}
         <div className="hidden md:flex items-center gap-1">
           {NAV.map((i) => <LinkItem key={i.href} {...i} />)}
           <div className="mx-2"><ThemeToggle /></div>
 
-          {/* Link styled like a button (no asChild) */}
           <Link
             href="/contact"
             className={buttonVariants({ variant: "warm", size: "sm" })}
           >
-            Work with us
+            Start a project
+            <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </div>
 
-        {/* Mobile */}
         <div className="md:hidden flex items-center gap-2">
           <ThemeToggle />
           <Sheet>
-            <SheetTrigger className="rounded-xl p-2 hover:bg-secondary/10" aria-label="Open menu">
+            <SheetTrigger className="rounded-lg p-2 hover:bg-secondary/10" aria-label="Open menu">
               <Menu size={20} />
             </SheetTrigger>
             <SheetContent side="right">
@@ -67,12 +62,12 @@ export function Navbar() {
                   </Link>
                 ))}
 
-                {/* ⬇️ Link styled like a button (no asChild) */}
                 <Link
                   href="/contact"
                   className={`${buttonVariants({ variant: "warm", size: "md" })} mt-2`}
                 >
-                  Work with us
+                  Start a project
+                  <ArrowRight size={16} aria-hidden="true" />
                 </Link>
               </div>
             </SheetContent>

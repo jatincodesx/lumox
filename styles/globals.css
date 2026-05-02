@@ -7,55 +7,48 @@
 
 /* Light theme tokens */
 :root {
-  --lumox-bg:        220 40% 98%;
-  --lumox-ink:       222 47% 11%;
-  --lumox-primary:   190 100% 46%;
-  --lumox-secondary: 221 100% 52%;
-  --lumox-accent:    136 64% 58%;
-  --lumox-warm:      14 100% 67%;
-  --lumox-muted:     220 14% 90%;
-  --lumox-soft:      220 40% 98%;
+  --lumox-bg:        210 33% 99%;
+  --lumox-ink:       216 34% 12%;
+  --lumox-primary:   188 76% 39%;
+  --lumox-secondary: 221 72% 43%;
+  --lumox-accent:    151 48% 42%;
+  --lumox-warm:      18 86% 54%;
+  --lumox-muted:     214 20% 87%;
+  --lumox-soft:      205 38% 96%;
 }
 
 /* Dark theme tokens */
 .dark {
-  --lumox-bg:        225 46% 8%;
-  --lumox-ink:       220 40% 96%;
-  --lumox-primary:   190 100% 50%;
-  --lumox-secondary: 221 100% 60%;
-  --lumox-accent:    136 64% 58%;
-  --lumox-warm:      14 100% 67%;
-  --lumox-muted:     220 14% 24%;
-  --lumox-soft:      225 46% 8%;
+  --lumox-bg:        218 35% 9%;
+  --lumox-ink:       210 35% 96%;
+  --lumox-primary:   185 76% 48%;
+  --lumox-secondary: 218 78% 62%;
+  --lumox-accent:    151 50% 55%;
+  --lumox-warm:      18 86% 62%;
+  --lumox-muted:     216 18% 25%;
+  --lumox-soft:      216 31% 13%;
 }
 
 html { scroll-behavior: smooth; }
 body {
-  /* use token utilities that we mapped in tailwind.config */
   @apply bg-soft text-ink antialiased;
 }
 
-/* Utilities */
 .container-prose { @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8; }
-.section { @apply pt-24 pb-24; }
+.section { @apply container-prose py-20; }
+.section-band { @apply border-y border-muted/50 bg-bg; }
 
-/* IMPORTANT: stop hard-coding light backgrounds */
 .card {
-  /* before: bg-white dark:bg-[#0f172a] */
-  @apply rounded-2xl shadow-soft bg-bg border border-muted/50;
+  @apply rounded-lg shadow-soft bg-bg border border-muted/50;
 }
 
-/* Tokens already handle dark mode; no need for dark: overrides here */
-.eyebrow { @apply text-xs uppercase tracking-wider text-secondary font-medium; }
+.eyebrow { @apply text-xs uppercase text-secondary font-semibold; }
 
-/* Focus rings */
 *:focus-visible {
   outline: 2px solid hsl(var(--lumox-secondary));
   outline-offset: 2px;
 }
 
-/* Translucent navbar backdrop (use tokens, not raw hex) */
 .nav-blur {
-  /* before: bg-white/60 dark:bg-[#0b1220]/60 */
-  @apply bg-bg/60 backdrop-blur-md border-b border-muted/50;
+  @apply bg-bg/85 backdrop-blur-md border-b border-muted/50;
 }

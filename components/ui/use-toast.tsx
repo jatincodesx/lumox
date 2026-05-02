@@ -8,11 +8,13 @@ type ToastState = {
   open: boolean;
 };
 
-const ToastCtx = React.createContext<{
+type ToastContextValue = {
   state: ToastState;
-  show: (s: Omit<ToastState, "open">) => void;
-  hide: () => void;
-} | null>(null);
+  show: React.Dispatch<Omit<ToastState, "open">>;
+  hide(): void;
+};
+
+const ToastCtx = React.createContext<ToastContextValue | null>(null);
 
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = React.useState<ToastState>({ open: false });
