@@ -31,7 +31,6 @@ Create these repository secrets in GitHub:
 CPANEL_FTP_SERVER
 CPANEL_FTP_USERNAME
 CPANEL_FTP_PASSWORD
-CPANEL_FTP_DIR
 ```
 
 Do not commit FTP details, passwords, API keys, or `.env.local` files.
@@ -44,15 +43,15 @@ In cPanel:
 2. Use an existing FTP account or create a new account for deployments.
 3. Confirm the FTP server/host. This is often your domain, server hostname, or an FTP hostname shown in cPanel.
 4. Confirm the FTP username and password.
-5. Confirm the directory for the Lumox domain.
+5. Confirm the FTP account starts in the Lumox domain document root.
 
-For the primary domain, the upload directory is commonly:
+For this site, the FTP account should be rooted at:
 
 ```text
-/public_html/
+/home/lumoxtec/public_html
 ```
 
-If `lumoxtech.com.au` is configured as an addon or separate domain, cPanel may use a different document root. Use that exact path for `CPANEL_FTP_DIR`.
+The workflow uploads to the FTP account root with `server-dir: ./`. If the FTP account starts in any other folder, the deploy can succeed but the public website will not update.
 
 ## Deploying
 
@@ -92,7 +91,7 @@ The workflow uploads:
 out/
 ```
 
-The workflow does not upload `.next/`, `node_modules/`, source files, `.env.local`, or local deployment zips.
+The workflow uploads `out/` into the FTP account root. The FTP account must therefore be rooted at the live cPanel document root, `/home/lumoxtec/public_html`. The workflow does not upload `.next/`, `node_modules/`, source files, `.env.local`, or local deployment zips.
 
 ## Checks After Deployment
 

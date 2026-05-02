@@ -40,7 +40,7 @@ The project is configured for static export with `output: "export"` in `next.con
 ## Deployment Output
 
 - Output folder: `out/`
-- cPanel upload target: the FTP directory configured in GitHub Secret `CPANEL_FTP_DIR`, commonly `/public_html/` for the primary domain.
+- cPanel upload target: the FTP account root. The FTP account should start in `/home/lumoxtec/public_html`.
 
 ## Main Files
 

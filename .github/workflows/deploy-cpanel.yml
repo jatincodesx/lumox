@@ -41,5 +41,5 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./out/
-          server-dir: ${{ secrets.CPANEL_FTP_DIR }}
+          server-dir: ./
           dangerous-clean-slate: false
