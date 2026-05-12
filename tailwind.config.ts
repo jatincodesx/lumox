@@ -17,8 +17,9 @@ const config: Config = {
         soft:      "hsl(var(--lumox-soft) / <alpha-value>)",
       },
       boxShadow: {
-        // you were using shadow-soft; define it here
         soft: "0 10px 30px -15px hsl(var(--lumox-ink) / 0.2)",
+        premium:
+          "0 24px 80px -40px hsl(var(--lumox-ink) / 0.42), 0 1px 0 hsl(var(--lumox-bg) / 0.65) inset",
       },
     },
   },

@@ -1,11 +1,15 @@
 import { SectionHeader } from "@/components/SectionHeader";
 import { ArrowRight, Mail } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { CONTACT_EMAIL } from "@/lib/site-content";
 
 export const metadata = {
   title: "Contact",
   description:
     "Contact Lumox Technologies about websites, web applications, AI-powered tools, workflow automation, or technical consulting.",
+  alternates: {
+    canonical: "https://lumoxtech.com.au/contact",
+  },
 };
 
 export default function ContactPage() {
@@ -14,7 +18,7 @@ export default function ContactPage() {
       <SectionHeader
         eyebrow="Contact"
         title="Tell us what you need"
-        sub="We'll respond with a practical next step and a clear path to delivery."
+        sub="Email Lumox with what you are trying to build, what already exists, and the outcome you want."
         level="h1"
       />
       <div className="grid gap-6 md:grid-cols-[1fr_0.8fr]">
@@ -26,7 +30,7 @@ export default function ContactPage() {
           </p>
           <a
             className={`${buttonVariants({ variant: "warm", size: "lg" })} mt-6`}
-            href="mailto:jatin@jatinvohra.com?subject=Lumox%20Technologies%20project%20enquiry"
+            href={`mailto:${CONTACT_EMAIL}?subject=Lumox%20Technologies%20project%20enquiry`}
           >
             <Mail size={18} aria-hidden="true" />
             Email Lumox
@@ -39,8 +43,8 @@ export default function ContactPage() {
             <div>
               <dt className="font-semibold">Email</dt>
               <dd className="mt-1">
-                <a className="hover:text-secondary" href="mailto:jatin@jatinvohra.com">
-                  jatin@jatinvohra.com
+                <a className="hover:text-secondary" href={`mailto:${CONTACT_EMAIL}`}>
+                  {CONTACT_EMAIL}
                 </a>
               </dd>
             </div>

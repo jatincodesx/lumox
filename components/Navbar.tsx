@@ -6,7 +6,6 @@ import { NAV } from "@/lib/seo";
 import { buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ArrowRight, Menu } from "lucide-react";
-import { ThemeToggle } from "./ThemeToggle";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,7 +21,12 @@ export function Navbar() {
   const LinkItem = ({ href, label }: { href: string; label: string }) => {
     const active = pathname === href;
     return (
-      <Link href={href} className={`px-3 py-2 rounded-lg text-sm hover:bg-secondary/10 ${active ? "text-secondary" : ""}`}>
+      <Link
+        href={href}
+        className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-secondary/10 ${
+          active ? "text-secondary" : "text-ink/70"
+        }`}
+      >
         {label}
       </Link>
     );
@@ -31,33 +35,33 @@ export function Navbar() {
   return (
     <div className={`sticky top-0 z-50 ${scrolled ? "nav-blur" : ""}`}>
       <nav className="container-prose flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-3" aria-label="Lumox Technologies home">
           <img src="/logo.svg" alt="Lumox Technologies logo" className="h-6" />
+          <span className="hidden text-sm font-semibold text-ink sm:inline">Lumox Technologies</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-1">
-          {NAV.map((i) => <LinkItem key={i.href} {...i} />)}
-          <div className="mx-2"><ThemeToggle /></div>
-
+        <div className="hidden items-center gap-1 md:flex">
+          {NAV.map((i) => (
+            <LinkItem key={i.href} {...i} />
+          ))}
           <Link
             href="/contact"
-            className={buttonVariants({ variant: "warm", size: "sm" })}
+            className={`${buttonVariants({ variant: "warm", size: "sm" })} ml-2`}
           >
-            Start a project
+            Start a Project
             <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </div>
 
-        <div className="md:hidden flex items-center gap-2">
-          <ThemeToggle />
+        <div className="flex items-center gap-2 md:hidden">
           <Sheet>
             <SheetTrigger className="rounded-lg p-2 hover:bg-secondary/10" aria-label="Open menu">
               <Menu size={20} />
             </SheetTrigger>
             <SheetContent side="right">
-              <div className="flex flex-col gap-2 mt-4">
+              <div className="mt-4 flex flex-col gap-2">
                 {NAV.map((i) => (
-                  <Link key={i.href} href={i.href} className="px-2 py-2 rounded-lg hover:bg-secondary/10">
+                  <Link key={i.href} href={i.href} className="rounded-lg px-2 py-2 hover:bg-secondary/10">
                     {i.label}
                   </Link>
                 ))}
@@ -66,7 +70,7 @@ export function Navbar() {
                   href="/contact"
                   className={`${buttonVariants({ variant: "warm", size: "md" })} mt-2`}
                 >
-                  Start a project
+                  Start a Project
                   <ArrowRight size={16} aria-hidden="true" />
                 </Link>
               </div>

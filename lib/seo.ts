@@ -2,28 +2,26 @@ export const ORG = {
   name: "Lumox Technologies Pty Ltd",
   url: "https://lumoxtech.com.au",
   logo: "/logo.svg",
-  sameAs: [
-    "https://www.linkedin.com/",
-  ],
+  sameAs: [],
 };
 
 export const NAV = [
-  { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/projects", label: "Projects" },
-  { href: "/#fitplus", label: "FitPlus" },
+  { href: "/projects", label: "Work" },
+  { href: "/fitplus", label: "FitPlus" },
+  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
 export const ROUTES = [
-  "/", "/services", "/projects", "/about", "/contact",
+  "/", "/services", "/projects", "/fitplus", "/about", "/contact",
   "/privacy", "/terms", "/careers",
 ];
 
 export const defaultMeta = {
   title: "Lumox Technologies | Websites, AI Tools & Digital Solutions",
   description:
-    "Lumox Technologies builds practical websites, web applications, AI-powered tools, and automation systems for businesses that want reliable digital solutions.",
+    "Lumox Technologies builds practical websites, web applications, AI-powered tools, and automation systems for businesses in Canberra and across Australia.",
   openGraph: {
     type: "website",
     url: ORG.url,

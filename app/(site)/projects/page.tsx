@@ -2,18 +2,21 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { ProjectsGrid } from "@/components/ProjectsGrid";
 
 export const metadata = {
-  title: "Projects",
+  title: "Work",
   description:
-    "Featured Lumox Technologies projects and product concepts, including FitPlus, SafeView, Kipla, and SpotlightPlus.",
+    "Lumox Technologies work and capabilities across business websites, AI tools, fitness platform development, and automation dashboards.",
+  alternates: {
+    canonical: "https://lumoxtech.com.au/projects",
+  },
 };
 
 export default function ProjectsPage() {
   return (
     <div className="section">
       <SectionHeader
-        eyebrow="Projects"
-        title="Pragmatic builds and product concepts"
-        sub="A few highlights under the Lumox umbrella."
+        eyebrow="Work"
+        title="Pragmatic builds and capability areas."
+        sub="A focused view of Lumox capability areas and known product work across websites, AI tools, platforms, and automation."
         level="h1"
       />
       <ProjectsGrid />

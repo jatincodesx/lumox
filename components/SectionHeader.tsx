@@ -12,10 +12,10 @@ export function SectionHeader({
   const Heading = level;
 
   return (
-    <div className="mb-8">
+    <div className="mb-10 max-w-4xl">
       <div className="eyebrow">{eyebrow}</div>
-      <Heading className="text-2xl md:text-3xl font-semibold mt-2">{title}</Heading>
-      {sub && <p className="text-ink/80 mt-2">{sub}</p>}
+      <Heading className="mt-3 text-3xl font-semibold leading-tight md:text-5xl">{title}</Heading>
+      {sub && <p className="mt-4 max-w-2xl text-base leading-7 text-ink/75 md:text-lg">{sub}</p>}
     </div>
   );
 }

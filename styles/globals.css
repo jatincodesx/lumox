@@ -7,19 +7,19 @@
 
 /* Light theme tokens */
 :root {
-  --lumox-bg:        210 33% 99%;
-  --lumox-ink:       216 34% 12%;
-  --lumox-primary:   188 76% 39%;
-  --lumox-secondary: 221 72% 43%;
-  --lumox-accent:    151 48% 42%;
-  --lumox-warm:      18 86% 54%;
-  --lumox-muted:     214 20% 87%;
-  --lumox-soft:      205 38% 96%;
+  --lumox-bg:        210 35% 99%;
+  --lumox-ink:       220 35% 10%;
+  --lumox-primary:   185 72% 39%;
+  --lumox-secondary: 224 62% 39%;
+  --lumox-accent:    151 46% 38%;
+  --lumox-warm:      18 82% 52%;
+  --lumox-muted:     214 18% 84%;
+  --lumox-soft:      210 40% 96%;
 }
 
 /* Dark theme tokens */
 .dark {
-  --lumox-bg:        218 35% 9%;
+  --lumox-bg:        220 36% 8%;
   --lumox-ink:       210 35% 96%;
   --lumox-primary:   185 76% 48%;
   --lumox-secondary: 218 78% 62%;
@@ -32,17 +32,22 @@
 html { scroll-behavior: smooth; }
 body {
   @apply bg-soft text-ink antialiased;
+  background-image:
+    linear-gradient(180deg, hsl(var(--lumox-bg) / 0.92), hsl(var(--lumox-soft) / 0.96)),
+    radial-gradient(circle at 50% -10%, hsl(var(--lumox-primary) / 0.11), transparent 34%);
 }
 
-.container-prose { @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8; }
-.section { @apply container-prose py-20; }
-.section-band { @apply border-y border-muted/50 bg-bg; }
+.container-prose { @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8; }
+.section { @apply container-prose py-20 md:py-24; }
+.section-band { @apply border-y border-muted/50 bg-bg/80; }
+.hero-grid { @apply grid gap-12 lg:grid-cols-[1.04fr_0.96fr] lg:items-center; }
+.section-kicker { @apply grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end; }
 
 .card {
-  @apply rounded-lg shadow-soft bg-bg border border-muted/50;
+  @apply rounded-lg border border-muted/60 bg-bg/90 shadow-soft backdrop-blur-sm;
 }
 
-.eyebrow { @apply text-xs uppercase text-secondary font-semibold; }
+.eyebrow { @apply text-xs font-semibold uppercase text-secondary; }
 
 *:focus-visible {
   outline: 2px solid hsl(var(--lumox-secondary));
@@ -51,4 +56,19 @@ body {
 
 .nav-blur {
   @apply bg-bg/85 backdrop-blur-md border-b border-muted/50;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

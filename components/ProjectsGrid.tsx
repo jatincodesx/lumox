@@ -1,39 +1,16 @@
-import { ProjectCard } from "./ProjectCard";
+import { MotionCard, StaggerContainer } from "@/components/motion-primitives";
+import { capabilityProjects } from "@/lib/site-content";
 
 export function ProjectsGrid() {
-  const items = [
-    {
-      title: "FitPlus",
-      summary:
-        "Fitness and nutrition platform for workout planning, meal management, progress tracking, and consistency.",
-      details:
-        "FitPlus is a featured Lumox product designed to help users plan workouts, manage meals, track progress, and stay consistent with their health goals.",
-    },
-    {
-      title: "SafeView",
-      summary:
-        "Privacy-first childcare video with per-child secure streams and audit trails.",
-      details:
-        "Per-child streams visible only to approved guardians. On-prem or private cloud. Optional face-masking for bystanders, admin-friendly audit logs, and educator-friendly controls.",
-    },
-    {
-      title: "Kipla",
-      summary:
-        "Home-services marketplace MVP for AU: bookings, provider onboarding, reviews.",
-      details:
-        "Providers list services and availability. Customers book, review, and rebook. Built on a free-first stack with pragmatic guardrails for growth.",
-    },
-    {
-      title: "SpotlightPlus",
-      summary:
-        "Intelligent camera spotlighting: auto-frame the subject, blur bystanders.",
-      details:
-        "Local control and clear on-device UX. Smart framing that reduces distraction while respecting privacy.",
-    },
-  ];
   return (
-    <div className="grid gap-6 md:grid-cols-3">
-      {items.map((i) => <ProjectCard key={i.title} {...i} />)}
-    </div>
+    <StaggerContainer className="grid gap-6 md:grid-cols-2">
+      {capabilityProjects.map((project) => (
+        <MotionCard key={project.title} className="min-h-[230px]">
+          <p className="text-sm font-semibold text-secondary">{project.label}</p>
+          <h2 className="mt-4 text-2xl font-semibold">{project.title}</h2>
+          <p className="mt-4 text-sm leading-6 text-ink/75">{project.text}</p>
+        </MotionCard>
+      ))}
+    </StaggerContainer>
   );
 }

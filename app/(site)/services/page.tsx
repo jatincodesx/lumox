@@ -1,11 +1,15 @@
 import { SectionHeader } from "@/components/SectionHeader";
 import { ServicesGrid } from "@/components/ServicesGrid";
-import { FAQ } from "@/components/FAQ";
+import { MotionCard, StaggerContainer } from "@/components/motion-primitives";
+import { processSteps } from "@/lib/site-content";
 
 export const metadata = {
   title: "Services",
   description:
     "Websites, web applications, AI-powered tools, workflow automation, technical consulting, and digital product development from Lumox Technologies.",
+  alternates: {
+    canonical: "https://lumoxtech.com.au/services",
+  },
 };
 
 export default function ServicesPage() {
@@ -13,29 +17,28 @@ export default function ServicesPage() {
     <div className="section">
       <SectionHeader
         eyebrow="Services"
-        title="Digital services for practical business outcomes"
-        sub="Websites, applications, automation, AI tools, product development, and technical consulting."
+        title="Digital services for practical business outcomes."
+        sub="Websites, applications, automation, AI tools, product development, and technical consulting for businesses that need reliable delivery."
         level="h1"
       />
       <ServicesGrid />
-      <div className="mt-12 card p-6">
-        <h3 className="text-xl font-semibold">Our process</h3>
-        <ol className="mt-4 grid gap-3 md:grid-cols-5 text-sm">
-          {["Discover", "Design", "Build", "Validate", "Handover"].map((s, i) => (
-            <li key={s} className="rounded-lg border border-muted/60 p-3">
-              <div className="text-secondary font-semibold">{i + 1}. {s}</div>
-              {i === 0 && <p className="text-ink/80">Context, constraints, and the shortest path to value.</p>}
-              {i === 1 && <p className="text-ink/80">Sketches, interfaces, and decisions you can review.</p>}
-              {i === 2 && <p className="text-ink/80">Incremental builds with weekly visibility.</p>}
-              {i === 3 && <p className="text-ink/80">Automated checks and pragmatic testing.</p>}
-              {i === 4 && <p className="text-ink/80">Runbooks, diagrams, and training where needed.</p>}
-            </li>
+      <div className="mt-16">
+        <SectionHeader
+          eyebrow="Process"
+          title="A clear four-step path."
+          sub="Every engagement starts with the business problem, then moves through design, build, launch, and improvement."
+        />
+        <StaggerContainer className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {processSteps.map((step, index) => (
+            <MotionCard key={step.title}>
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-sm font-semibold text-white">
+                {index + 1}
+              </div>
+              <h2 className="mt-5 text-xl font-semibold">{step.title}</h2>
+              <p className="mt-3 text-sm leading-6 text-ink/75">{step.text}</p>
+            </MotionCard>
           ))}
-        </ol>
-      </div>
-      <div className="mt-12">
-        <SectionHeader eyebrow="FAQ" title="Straight answers" />
-        <FAQ />
+        </StaggerContainer>
       </div>
     </div>
   );
