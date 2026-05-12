@@ -5,11 +5,49 @@ import type { ReactNode } from "react";
 import ClientProviders from "@/components/ClientProviders";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 const SITE_URL = "https://lumoxtech.com.au";
 const SITE_TITLE = "Lumox Technologies | Websites, AI Tools & Digital Solutions";
 const SITE_DESCRIPTION =
-  "Lumox Technologies builds practical websites, web applications, AI-powered tools, and automation systems for businesses that want reliable digital solutions.";
+  "Lumox Technologies builds practical websites, web applications, AI-powered tools, and automation systems for businesses in Canberra and across Australia.";
+
+const jsonLdSchemas = [
+  {
+    "@type": "Organization",
+    name: "Lumox Technologies",
+    legalName: "Lumox Technologies Pty Ltd",
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo.svg`,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Canberra",
+      addressRegion: "ACT",
+      addressCountry: "AU",
+    },
+  },
+  {
+    "@type": "WebSite",
+    name: "Lumox Technologies",
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+    inLanguage: "en-AU",
+  },
+  {
+    "@type": "ProfessionalService",
+    name: "Lumox Technologies",
+    url: SITE_URL,
+    areaServed: ["Canberra", "Australia"],
+    priceRange: "$$",
+    serviceType: [
+      "Web development Canberra",
+      "AI tools for business",
+      "Business automation Australia",
+      "Web applications Canberra",
+      "Digital solutions Canberra",
+    ],
+  },
+];
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -47,8 +85,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-soft text-ink antialiased">
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className="min-h-screen overflow-x-hidden bg-bg text-ink antialiased">
+        <JsonLd schema={jsonLdSchemas} />
         <ClientProviders>
           <Navbar />
           <main>{children}</main>

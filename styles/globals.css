@@ -5,50 +5,52 @@
 @tailwind utilities;
 /* stylelint-enable at-rule-no-unknown */
 
-/* Light theme tokens */
 :root {
-  --lumox-bg:        210 33% 99%;
-  --lumox-ink:       216 34% 12%;
-  --lumox-primary:   188 76% 39%;
-  --lumox-secondary: 221 72% 43%;
-  --lumox-accent:    151 48% 42%;
-  --lumox-warm:      18 86% 54%;
-  --lumox-muted:     214 20% 87%;
-  --lumox-soft:      205 38% 96%;
+  color-scheme: dark;
+  --lumox-bg:        222 47% 5%;
+  --lumox-ink:       210 35% 96%;
+  --lumox-primary:   187 95% 54%;
+  --lumox-secondary: 220 92% 67%;
+  --lumox-accent:    265 92% 72%;
+  --lumox-warm:      176 93% 45%;
+  --lumox-muted:     219 23% 22%;
+  --lumox-soft:      222 39% 10%;
 }
 
-/* Dark theme tokens */
 .dark {
-  --lumox-bg:        218 35% 9%;
-  --lumox-ink:       210 35% 96%;
-  --lumox-primary:   185 76% 48%;
-  --lumox-secondary: 218 78% 62%;
-  --lumox-accent:    151 50% 55%;
-  --lumox-warm:      18 86% 62%;
-  --lumox-muted:     216 18% 25%;
-  --lumox-soft:      216 31% 13%;
+  color-scheme: dark;
 }
 
 html { scroll-behavior: smooth; }
+
 body {
-  @apply bg-soft text-ink antialiased;
+  @apply bg-bg text-ink antialiased;
+  background:
+    radial-gradient(circle at 50% -10%, hsl(var(--lumox-secondary) / 0.22), transparent 34rem),
+    radial-gradient(circle at 80% 10%, hsl(var(--lumox-accent) / 0.15), transparent 28rem),
+    hsl(var(--lumox-bg));
 }
 
 .container-prose { @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8; }
 .section { @apply container-prose py-20; }
-.section-band { @apply border-y border-muted/50 bg-bg; }
+.section-band { @apply border-y border-white/10 bg-soft/55; }
 
 .card {
-  @apply rounded-lg shadow-soft bg-bg border border-muted/50;
+  @apply rounded-lg border border-white/10 bg-white/[0.035] shadow-soft backdrop-blur;
 }
 
-.eyebrow { @apply text-xs uppercase text-secondary font-semibold; }
+.eyebrow { @apply text-xs font-semibold uppercase tracking-[0.22em] text-primary; }
 
 *:focus-visible {
-  outline: 2px solid hsl(var(--lumox-secondary));
+  outline: 2px solid hsl(var(--lumox-primary));
   outline-offset: 2px;
 }
 
 .nav-blur {
-  @apply bg-bg/85 backdrop-blur-md border-b border-muted/50;
+  @apply border-b border-white/10 bg-bg/80 backdrop-blur-xl;
+}
+
+::selection {
+  background: hsl(var(--lumox-primary) / 0.35);
+  color: hsl(var(--lumox-ink));
 }

@@ -2,37 +2,40 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="border-t border-muted/60 bg-bg">
-      <div className="container-prose py-10 grid gap-8 md:grid-cols-4">
+    <footer className="border-t border-white/10 bg-bg">
+      <div className="container-prose grid gap-8 py-10 md:grid-cols-4">
         <div className="space-y-3">
-          <img src="/logo.svg" alt="Lumox Technologies logo" className="h-6" />
-          <p className="text-sm text-ink/70">
-            Practical websites, web applications, automation tools, AI systems, and technical consulting.
+          <div className="flex items-center gap-3">
+            <span className="h-3 w-3 rounded-full bg-primary shadow-[0_0_18px_hsl(var(--lumox-primary))]" />
+            <span className="text-sm font-semibold">Lumox Technologies</span>
+          </div>
+          <p className="text-sm leading-6 text-ink/64">
+            Practical websites, web applications, automation tools, AI systems, and technical consulting for Canberra and Australian businesses.
           </p>
         </div>
         <div>
-          <h4 className="font-semibold mb-2">Company</h4>
-          <ul className="space-y-1 text-sm">
-            <li><Link href="/about" className="hover:text-secondary">About</Link></li>
-            <li><Link href="/projects" className="hover:text-secondary">Projects</Link></li>
-            <li><Link href="/#fitplus" className="hover:text-secondary">FitPlus</Link></li>
-            <li><Link href="/careers" className="hover:text-secondary">Careers</Link></li>
+          <h4 className="mb-2 font-semibold">Company</h4>
+          <ul className="space-y-1 text-sm text-ink/64">
+            <li><Link href="/#services" className="hover:text-primary">Services</Link></li>
+            <li><Link href="/#work" className="hover:text-primary">Work</Link></li>
+            <li><Link href="/#fitplus" className="hover:text-primary">FitPlus</Link></li>
+            <li><Link href="/careers" className="hover:text-primary">Careers</Link></li>
           </ul>
         </div>
         <div>
-          <h4 className="font-semibold mb-2">Legal</h4>
-          <ul className="space-y-1 text-sm">
-            <li><Link href="/privacy" className="hover:text-secondary">Privacy</Link></li>
-            <li><Link href="/terms" className="hover:text-secondary">Terms</Link></li>
+          <h4 className="mb-2 font-semibold">Legal</h4>
+          <ul className="space-y-1 text-sm text-ink/64">
+            <li><Link href="/privacy" className="hover:text-primary">Privacy</Link></li>
+            <li><Link href="/terms" className="hover:text-primary">Terms</Link></li>
           </ul>
         </div>
         <div>
-          <h4 className="font-semibold mb-2">Contact</h4>
-          <p className="text-sm">Canberra, ACT</p>
-          <p className="text-sm"><a href="mailto:jatin@jatinvohra.com" className="hover:text-secondary">jatin@jatinvohra.com</a></p>
+          <h4 className="mb-2 font-semibold">Contact</h4>
+          <p className="text-sm text-ink/64">Canberra, ACT</p>
+          <p className="text-sm"><a href="mailto:jatin@jatinvohra.com" className="text-ink/64 hover:text-primary">jatin@jatinvohra.com</a></p>
         </div>
       </div>
-      <div className="border-t border-muted/60 py-4 text-center text-xs text-ink/60">
+      <div className="border-t border-white/10 py-4 text-center text-xs text-ink/48">
         © {new Date().getFullYear()} Lumox Technologies Pty Ltd. All rights reserved.
       </div>
     </footer>

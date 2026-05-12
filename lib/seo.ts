@@ -8,11 +8,11 @@ export const ORG = {
 };
 
 export const NAV = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/projects", label: "Projects" },
+  { href: "/#services", label: "Services" },
+  { href: "/#work", label: "Work" },
   { href: "/#fitplus", label: "FitPlus" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#process", label: "Process" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export const ROUTES = [
@@ -23,7 +23,7 @@ export const ROUTES = [
 export const defaultMeta = {
   title: "Lumox Technologies | Websites, AI Tools & Digital Solutions",
   description:
-    "Lumox Technologies builds practical websites, web applications, AI-powered tools, and automation systems for businesses that want reliable digital solutions.",
+    "Lumox Technologies builds practical websites, web applications, AI-powered tools, and automation systems for businesses in Canberra and across Australia.",
   openGraph: {
     type: "website",
     url: ORG.url,

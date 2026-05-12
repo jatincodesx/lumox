@@ -6,7 +6,6 @@ import { NAV } from "@/lib/seo";
 import { buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ArrowRight, Menu } from "lucide-react";
-import { ThemeToggle } from "./ThemeToggle";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,51 +21,57 @@ export function Navbar() {
   const LinkItem = ({ href, label }: { href: string; label: string }) => {
     const active = pathname === href;
     return (
-      <Link href={href} className={`px-3 py-2 rounded-lg text-sm hover:bg-secondary/10 ${active ? "text-secondary" : ""}`}>
+      <Link
+        href={href}
+        className={`rounded-lg px-3 py-2 text-sm text-ink/72 transition hover:bg-white/5 hover:text-ink ${
+          active ? "text-primary" : ""
+        }`}
+      >
         {label}
       </Link>
     );
   };
 
   return (
-    <div className={`sticky top-0 z-50 ${scrolled ? "nav-blur" : ""}`}>
+    <div className={`sticky top-0 z-50 ${scrolled ? "nav-blur" : "border-b border-white/0 bg-bg/35 backdrop-blur-sm"}`}>
       <nav className="container-prose flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <img src="/logo.svg" alt="Lumox Technologies logo" className="h-6" />
+        <Link href="/" className="flex items-center gap-3" aria-label="Lumox Technologies home">
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 shadow-[0_0_24px_hsl(var(--lumox-primary)/0.18)]">
+            <span className="h-3 w-3 rounded-full bg-primary shadow-[0_0_18px_hsl(var(--lumox-primary))]" />
+          </span>
+          <span className="text-sm font-semibold tracking-wide">Lumox Technologies</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden items-center gap-1 md:flex">
           {NAV.map((i) => <LinkItem key={i.href} {...i} />)}
-          <div className="mx-2"><ThemeToggle /></div>
 
           <Link
-            href="/contact"
-            className={buttonVariants({ variant: "warm", size: "sm" })}
+            href="/#contact"
+            className={`${buttonVariants({ variant: "warm", size: "sm" })} ml-2`}
           >
-            Start a project
+            Start a Project
             <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </div>
 
-        <div className="md:hidden flex items-center gap-2">
-          <ThemeToggle />
+        <div className="flex items-center gap-2 md:hidden">
           <Sheet>
-            <SheetTrigger className="rounded-lg p-2 hover:bg-secondary/10" aria-label="Open menu">
+            <SheetTrigger className="rounded-lg border border-white/10 p-2 hover:bg-white/5" aria-label="Open menu">
               <Menu size={20} />
             </SheetTrigger>
             <SheetContent side="right">
-              <div className="flex flex-col gap-2 mt-4">
+              <div className="mt-4 flex flex-col gap-2">
                 {NAV.map((i) => (
-                  <Link key={i.href} href={i.href} className="px-2 py-2 rounded-lg hover:bg-secondary/10">
+                  <Link key={i.href} href={i.href} className="rounded-lg px-2 py-2 text-ink/80 hover:bg-white/5 hover:text-ink">
                     {i.label}
                   </Link>
                 ))}
 
                 <Link
-                  href="/contact"
+                  href="/#contact"
                   className={`${buttonVariants({ variant: "warm", size: "md" })} mt-2`}
                 >
-                  Start a project
+                  Start a Project
                   <ArrowRight size={16} aria-hidden="true" />
                 </Link>
               </div>
