@@ -1,4 +1,10 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import { LumoxCore } from "@/components/animations/LumoxCore";
 import { MotionCard } from "@/components/animations/MotionCard";
+import { SiteContainer } from "@/components/layout/SiteContainer";
 
 const capabilities = [
   {
@@ -20,26 +26,45 @@ const capabilities = [
 ];
 
 export function WorkCapabilities() {
+  const ref = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 80%", "end 20%"] });
+  const smooth = useSpring(scrollYProgress, { stiffness: 86, damping: 24, mass: 0.34 });
+  const railX = useTransform(smooth, [0, 1], ["-10%", "10%"]);
+
   return (
-    <section id="work" className="section-band">
-      <div className="section">
-        <div className="max-w-3xl">
-          <div className="eyebrow">Work</div>
-          <h2 className="mt-3 text-3xl font-semibold leading-tight md:text-5xl">Capability without invented case studies.</h2>
-          <p className="mt-5 text-lg leading-8 text-ink/68">
-            Where public project details are limited, Lumox keeps the story honest and shows the kinds of systems it can design and build.
-          </p>
+    <section ref={ref} id="work" className="section-band relative z-10">
+      <SiteContainer className="py-20 md:py-28">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+          <div>
+            <div className="eyebrow">Work</div>
+            <h2 className="section-heading mt-3">Capability without invented case studies.</h2>
+            <p className="section-copy mt-5">
+              Where public project details are limited, Lumox keeps the story honest and shows the kinds of systems it can design and build.
+            </p>
+          </div>
+          <motion.div className="hidden lg:block" style={reduceMotion ? undefined : { x: railX }}>
+            <LumoxCore variant="modules" progress={smooth} compact />
+          </motion.div>
         </div>
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid auto-rows-fr gap-5 md:grid-cols-2 lg:grid-cols-4">
           {capabilities.map((item, index) => (
-            <MotionCard key={item.title}>
-              <p className="text-sm font-semibold text-primary">0{index + 1}</p>
+            <MotionCard key={item.title} index={index}>
+              <p className="text-sm font-semibold text-accent">0{index + 1}</p>
               <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
               <p className="mt-3 text-sm leading-6 text-ink/68">{item.text}</p>
+              <div className="mt-auto pt-8">
+                <div className="h-1 overflow-hidden rounded-full bg-white/10">
+                  <motion.div
+                    className="h-full origin-left rounded-full bg-primary"
+                    style={reduceMotion ? undefined : { scaleX: smooth }}
+                  />
+                </div>
+              </div>
             </MotionCard>
           ))}
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

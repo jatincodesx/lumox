@@ -1,3 +1,7 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import {
   Bot,
   BriefcaseBusiness,
@@ -7,7 +11,9 @@ import {
   Workflow,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { LumoxCore } from "@/components/animations/LumoxCore";
 import { MotionCard } from "@/components/animations/MotionCard";
+import { SiteContainer } from "@/components/layout/SiteContainer";
 
 type Service = {
   title: string;
@@ -49,26 +55,44 @@ const services: Service[] = [
 ];
 
 export function Services() {
+  const ref = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 75%", "end 25%"] });
+  const smooth = useSpring(scrollYProgress, { stiffness: 82, damping: 22, mass: 0.35 });
+  const coreY = useTransform(smooth, [0, 1], [40, -42]);
+
   return (
-    <section id="services" className="section">
-      <div className="max-w-3xl">
-        <div className="eyebrow">Services</div>
-        <h2 className="mt-3 text-3xl font-semibold leading-tight md:text-5xl">Practical digital systems, built with focus.</h2>
-        <p className="mt-5 text-lg leading-8 text-ink/68">
-          Lumox works across websites, applications, automation, and AI because real business problems rarely fit into one narrow label.
-        </p>
-      </div>
-      <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {services.map(({ title, text, icon: Icon }) => (
-          <MotionCard key={title}>
-            <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-primary/25 bg-primary/10 text-primary">
-              <Icon className="h-5 w-5" aria-hidden="true" />
-            </div>
-            <h3 className="mt-5 text-xl font-semibold">{title}</h3>
-            <p className="mt-3 text-sm leading-6 text-ink/68">{text}</p>
-          </MotionCard>
-        ))}
-      </div>
+    <section ref={ref} id="services" className="relative z-10">
+      <SiteContainer className="grid gap-12 py-20 md:py-28 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div className="lg:sticky lg:top-28">
+          <div className="eyebrow">Services</div>
+          <h2 className="section-heading mt-3">Practical digital systems, built with focus.</h2>
+          <p className="section-copy mt-5">
+            Lumox works across websites, applications, automation, and AI because real business problems rarely fit into one narrow label.
+          </p>
+          <motion.div className="mt-8 hidden lg:block" style={reduceMotion ? undefined : { y: coreY }}>
+            <LumoxCore variant="services" progress={smooth} compact />
+          </motion.div>
+        </div>
+
+        <div className="relative">
+          <motion.div className="mb-8 lg:hidden" style={reduceMotion ? undefined : { y: coreY }}>
+            <LumoxCore variant="services" progress={smooth} compact />
+          </motion.div>
+          <div className="grid auto-rows-fr gap-5 md:grid-cols-2">
+            {services.map(({ title, text, icon: Icon }, index) => (
+              <MotionCard key={title} index={index} className={index % 2 ? "md:mt-8" : ""}>
+                <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-primary/25 bg-primary/10 text-accent">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <h3 className="mt-5 text-xl font-semibold">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-ink/68">{text}</p>
+                <div className="mt-auto pt-6 text-xs font-semibold text-primary/80">Connected to the Lumox Core</div>
+              </MotionCard>
+            ))}
+          </div>
+        </div>
+      </SiteContainer>
     </section>
   );
 }

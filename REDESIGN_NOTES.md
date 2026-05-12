@@ -1,91 +1,88 @@
 # Lumox Redesign Notes
 
-Branch: `redesign/dark-scroll-story-lumox`
+Branch: `redesign/dark-scroll-story-lumox-v2`
 
-## JSON-LD Runtime Error
+## Brand Assets Selected
 
-The reported runtime error was:
+- Navbar and footer mark: `public/brand/lumox-logo-white-512.png`
+- JSON-LD logo: `public/brand/lumox-logo-white-1024.png`
+- Favicons: `public/favicon-16x16.png`, `public/favicon-32x32.png`
+- Apple touch icon: `public/apple-touch-icon.png`
+- Open Graph image: `public/og.png`
 
-`TypeError: undefined is not an object (evaluating 'r["@context"].toLowerCase')`
+The selected UI logo is the transparent white mark from the brand kit. It was chosen because it has strong contrast on the dark site background, avoids white boxes, and remains crisp at navbar/footer sizes. SVG would be preferred, but the audited brand kit did not include SVG logo files.
 
-The likely cause was JSON-LD/schema rendering code assuming every schema entry was a valid object with a string-like `@context`. The site now uses `components/seo/JsonLd.tsx`, which normalizes schema input before rendering.
+## Color System
 
-Fix summary:
+- Background: near-black `#020617` equivalent through `--lumox-bg`.
+- Deep navy: `#001A37` equivalent through the navy brand asset and dark surface tokens.
+- Primary blue: brand blue close to `#0057B8`.
+- Accent: restrained cyan-blue for glows, labels, rails, and interactive highlights.
+- Text: near-white primary text with cool secondary grey.
+- Cards: dark glass surfaces with subtle blue/white borders.
 
-- Accepts a single schema object or an array of schema objects.
-- Filters out `null`, `undefined`, arrays, and non-object values.
-- Skips schema objects missing `@type`.
-- Adds the safe default `@context` value `https://schema.org` when missing.
-- Deduplicates identical JSON-LD payloads.
-- Uses `JSON.stringify` with `<` escaped before rendering server-side scripts.
-- Includes a code comment explaining why malformed schema must not crash rendering.
+No light page sections were added.
 
-## Dark Mode Design System
+## Scroll Animation System
 
-The site is now dark by default from the first server render:
+The homepage now uses a continuous Lumox Core motion language across the full page:
 
-- `html` renders with `class="dark"`.
-- Root CSS tokens are dark-first.
-- Body background is near-black with controlled blue/violet/cyan light fields.
-- Cards use dark glass, subtle borders, and restrained glow.
-- Navigation, mobile sheet, footer, buttons, inputs, badges, dialogs, and tabs were updated for dark surfaces.
-- The old theme toggle was removed from navigation to avoid user-stored light mode causing a white flash.
+- Global `ScrollOrchestrator` adds a scroll-linked progress rail, moving grid, and page-level blue light field.
+- `LumoxCore` is reusable and changes by section variant: hero, services, process, product, modules, layers, and beam.
+- Hero uses staggered text entry, scroll-linked core scale/position, and animated grid paths.
+- Services uses a sticky core and connected service cards with scroll-aware reveals.
+- Scroll Story keeps the original advanced sticky direction but now uses the same Lumox Core visual language.
+- FitPlus transforms the core into a product dashboard moment with animated app stats and feature chips.
+- Work/Capabilities splits the system into capability modules with staggered cards and scroll-linked rails.
+- Why Lumox resolves into Strategy, Design, Build, Improve layers around the core.
+- Contact resolves the system into a focused light beam and final CTA.
 
-## Scroll Story
+Framer Motion features used across the site include `useScroll`, `useTransform`, `useSpring`, `useMotionValueEvent`, sticky sections, parallax layers, scroll-linked scale/rotation/translation, staggered content reveals, and reduced-motion fallbacks.
 
-The main interaction is the sticky section titled “From scattered tools to intelligent systems”.
+## Alignment Fixes
 
-Stages:
+- Added shared `site-container` sizing at `max-w-7xl`.
+- Replaced mixed container widths with one container system.
+- Standardized section padding and heading/copy widths.
+- Normalized card heights with `auto-rows-fr` and full-height cards.
+- Tightened hero height so the next section is hinted instead of leaving a dead scroll zone.
+- Kept desktop text/object layouts aligned to the same left and right edges.
+- Simplified mobile behavior so objects stack above text instead of forcing wrapped desktop choreography.
+- Preserved `overflow-x-hidden` and avoided fixed-width animated objects that would create mobile horizontal scroll.
 
-- Discover: maps the business problem and surrounding systems.
-- Design: aligns interface, user journey, and architecture.
-- Build: activates nodes around websites, apps, automations, and AI workflows.
-- Launch: resolves the system into a CTA-style light beam.
+## SEO And Accessibility
 
-Framer Motion features used:
+- One H1 remains on the homepage.
+- Major service/product/process copy remains real HTML text.
+- H2/H3 hierarchy is preserved.
+- Navbar and footer logos use `alt="Lumox Technologies logo"`.
+- Metadata includes favicon, Apple touch icon, Open Graph, Twitter, and JSON-LD logo references.
+- JSON-LD rendering remains handled by the existing safe `JsonLd` component.
+- Buttons and links remain semantic keyboard-accessible controls.
+- Motion-heavy components use `useReducedMotion` fallbacks.
+- The mobile menu keeps the Radix dialog title for screen readers.
 
-- `useScroll`
-- `useTransform`
-- `useSpring`
-- `useMotionValueEvent`
-- Sticky scroll tracking
-- Parallax grid motion
-- Scroll-linked object scale and rotation
-- Scroll-linked progress line
-- Stage-aware text panel movement
-- Reduced motion fallback with static content cards
+## Performance Notes
 
-## SEO Improvements
+- No Three.js or heavy 3D dependency was added.
+- The core visual is CSS, SVG paths, and Framer Motion transforms.
+- Animations prefer transform, opacity, scale, rotate, and filter.
+- The Open Graph image was resized to `1200x630`.
+- Static export remains configured through `next.config.js`.
 
-- Homepage keeps one H1 and clear H2 structure.
-- Important text remains real HTML, not canvas or image text.
-- Root metadata uses:
-  - Title: `Lumox Technologies | Websites, AI Tools & Digital Solutions`
-  - Description: `Lumox Technologies builds practical websites, web applications, AI-powered tools, and automation systems for businesses in Canberra and across Australia.`
-  - Canonical: `https://lumoxtech.com.au`
-- Open Graph and Twitter metadata remain configured.
-- JSON-LD now includes `Organization`, `WebSite`, and `ProfessionalService`.
-- Canberra/Australia relevance was added naturally without keyword stuffing.
-- `robots.txt` remains present.
-- `sitemap.xml` last modified dates were updated to `2026-05-12`.
+## Build Result
 
-## Performance Considerations
-
-- No heavy 3D library was added.
-- The central object is built with CSS and Framer Motion transforms.
-- Animations prefer transform and opacity.
-- Static export settings remain unchanged.
-- Hero text renders as HTML immediately and is not blocked by the animated visual.
-- `prefers-reduced-motion` users receive static or simplified animations.
-
-## Build And Validation
-
-- `npm install`: failed inside npm Arborist with `Cannot read properties of null (reading 'matches')`. The repository is pnpm-managed and has a pnpm lockfile.
+- `npm install`: not run because `node_modules` was already present.
 - `npm run lint`: passed.
-- `npm run typecheck`: passed after clearing stale generated `.next/types`.
-- `npm run build`: passed. Next static export generated all app routes successfully.
-- Browser preview: checked desktop and mobile at `http://localhost:3001`; homepage renders dark, has one H1, emits three JSON-LD scripts, and the mobile menu opens with an accessible hidden dialog title.
+- `npm run typecheck`: passed.
+- `npm run build`: passed. Next generated all static app routes successfully.
+
+Browser preview notes:
+
+- Desktop preview at `http://localhost:3020/` verified dark hero rendering, navbar logo visibility, real HTML content, and no visible white sections in the checked viewport.
+- The in-app browser later blocked new localhost navigation attempts due to its local browser policy, so final mobile visual verification could not be completed there.
 
 ## Remaining TODOs
 
 - Replace `FITPLUS_URL = "#"` in `components/sections/FitPlus.tsx` when the live FitPlus URL is available.
+- If a clean SVG logo export is later added to the brand kit, replace the PNG nav/footer mark with SVG.

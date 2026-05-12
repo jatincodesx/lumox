@@ -9,6 +9,8 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
+import { LumoxCore } from "@/components/animations/LumoxCore";
+import { SiteContainer } from "@/components/layout/SiteContainer";
 
 const stages = [
   {
@@ -51,7 +53,7 @@ export function ScrollStory() {
 
   if (reduceMotion) {
     return (
-      <section id="process" className="section">
+      <section id="process" className="section relative z-10">
         <div className="max-w-3xl">
           <div className="eyebrow">Scroll story</div>
           <h2 className="mt-3 text-3xl font-semibold md:text-5xl">From scattered tools to intelligent systems</h2>
@@ -70,8 +72,8 @@ export function ScrollStory() {
   }
 
   return (
-    <section ref={targetRef} id="process" className="relative min-h-[420vh]">
-      <div className="sticky top-16 flex min-h-[calc(100vh-4rem)] items-center overflow-hidden border-y border-white/10 bg-soft/30">
+    <section ref={targetRef} id="process" className="relative z-10 min-h-[420vh]">
+      <div className="sticky top-16 flex min-h-[calc(100vh-4rem)] items-center overflow-hidden border-y border-white/10 bg-soft/35">
         <motion.div
           className="absolute inset-0 opacity-60"
           style={{ y: gridY }}
@@ -81,7 +83,7 @@ export function ScrollStory() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsl(var(--lumox-primary)/0.16),transparent_34rem)]" />
         </motion.div>
 
-        <div className="container-prose relative z-10 grid w-full gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr_0.8fr] lg:items-center">
+        <SiteContainer className="relative z-10 grid w-full gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr_0.8fr] lg:items-center">
           <div className="space-y-6">
             <div>
               <div className="eyebrow">Scroll story</div>
@@ -99,25 +101,8 @@ export function ScrollStory() {
               className="absolute h-28 w-[28rem] origin-left rounded-full bg-primary/35 blur-3xl"
               style={{ scaleX: beamScale, opacity: beamOpacity }}
             />
-            <motion.div
-              className="relative h-64 w-64 rounded-[2.25rem] border border-primary/25 bg-white/[0.045] shadow-[0_0_90px_hsl(var(--lumox-primary)/0.34)] backdrop-blur-xl"
-              style={{ rotate, scale }}
-            >
-              <div className="absolute inset-6 rounded-[1.6rem] border border-white/15" />
-              <div className="absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_46px_hsl(var(--lumox-primary))]" />
-              {[
-                "left-1/2 top-0 -translate-x-1/2 -translate-y-1/2",
-                "right-0 top-1/2 -translate-y-1/2 translate-x-1/2",
-                "bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2",
-                "left-0 top-1/2 -translate-x-1/2 -translate-y-1/2",
-              ].map((position, index) => (
-                <motion.span
-                  key={position}
-                  className={`absolute h-4 w-4 rounded-full bg-accent shadow-[0_0_28px_hsl(var(--lumox-accent))] ${position}`}
-                  animate={{ opacity: activeStage >= index ? 1 : 0.32, scale: activeStage >= index ? 1.28 : 0.85 }}
-                  transition={{ duration: 0.35 }}
-                />
-              ))}
+            <motion.div style={{ rotate, scale }}>
+              <LumoxCore variant="process" progress={smoothProgress} compact />
             </motion.div>
           </div>
 
@@ -139,7 +124,7 @@ export function ScrollStory() {
               </motion.article>
             ))}
           </motion.div>
-        </div>
+        </SiteContainer>
       </div>
     </section>
   );

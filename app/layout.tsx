@@ -18,7 +18,7 @@ const jsonLdSchemas = [
     name: "Lumox Technologies",
     legalName: "Lumox Technologies Pty Ltd",
     url: SITE_URL,
-    logo: `${SITE_URL}/logo.svg`,
+    logo: `${SITE_URL}/brand/lumox-logo-white-1024.png`,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Canberra",
@@ -80,6 +80,13 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     images: ["/og.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
 };
 

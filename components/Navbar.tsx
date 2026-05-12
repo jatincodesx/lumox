@@ -6,6 +6,7 @@ import { NAV } from "@/lib/seo";
 import { buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ArrowRight, Menu } from "lucide-react";
+import { LumoxLogo } from "@/components/brand/LumoxLogo";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -34,12 +35,9 @@ export function Navbar() {
 
   return (
     <div className={`sticky top-0 z-50 ${scrolled ? "nav-blur" : "border-b border-white/0 bg-bg/35 backdrop-blur-sm"}`}>
-      <nav className="container-prose flex h-16 items-center justify-between">
+      <nav className="site-container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-3" aria-label="Lumox Technologies home">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 shadow-[0_0_24px_hsl(var(--lumox-primary)/0.18)]">
-            <span className="h-3 w-3 rounded-full bg-primary shadow-[0_0_18px_hsl(var(--lumox-primary))]" />
-          </span>
-          <span className="text-sm font-semibold tracking-wide">Lumox Technologies</span>
+          <LumoxLogo />
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">

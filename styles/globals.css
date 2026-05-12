@@ -7,14 +7,14 @@
 
 :root {
   color-scheme: dark;
-  --lumox-bg:        222 47% 5%;
-  --lumox-ink:       210 35% 96%;
-  --lumox-primary:   187 95% 54%;
-  --lumox-secondary: 220 92% 67%;
-  --lumox-accent:    265 92% 72%;
-  --lumox-warm:      176 93% 45%;
-  --lumox-muted:     219 23% 22%;
-  --lumox-soft:      222 39% 10%;
+  --lumox-bg:        222 84% 5%;
+  --lumox-ink:       213 38% 96%;
+  --lumox-primary:   211 100% 36%;
+  --lumox-secondary: 205 100% 58%;
+  --lumox-accent:    188 94% 59%;
+  --lumox-warm:      0 0% 100%;
+  --lumox-muted:     218 28% 20%;
+  --lumox-soft:      215 77% 8%;
 }
 
 .dark {
@@ -26,20 +26,41 @@ html { scroll-behavior: smooth; }
 body {
   @apply bg-bg text-ink antialiased;
   background:
-    radial-gradient(circle at 50% -10%, hsl(var(--lumox-secondary) / 0.22), transparent 34rem),
-    radial-gradient(circle at 80% 10%, hsl(var(--lumox-accent) / 0.15), transparent 28rem),
+    radial-gradient(circle at 50% -12%, hsl(var(--lumox-primary) / 0.32), transparent 34rem),
+    radial-gradient(circle at 86% 8%, hsl(var(--lumox-accent) / 0.12), transparent 28rem),
     hsl(var(--lumox-bg));
 }
 
-.container-prose { @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8; }
-.section { @apply container-prose py-20; }
-.section-band { @apply border-y border-white/10 bg-soft/55; }
+.site-container,
+.container-prose { @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8; }
+
+.section { @apply site-container py-20 md:py-28; }
+.section-band { @apply border-y border-white/10 bg-soft/40; }
 
 .card {
   @apply rounded-lg border border-white/10 bg-white/[0.035] shadow-soft backdrop-blur;
 }
 
-.eyebrow { @apply text-xs font-semibold uppercase tracking-[0.22em] text-primary; }
+.eyebrow { @apply text-xs font-semibold uppercase tracking-[0.22em] text-accent; }
+
+.section-heading { @apply max-w-3xl text-3xl font-semibold leading-tight md:text-5xl; }
+
+.section-copy { @apply max-w-2xl text-lg leading-8 text-ink/70; }
+
+.motion-grid {
+  background-image:
+    linear-gradient(hsl(var(--lumox-ink) / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--lumox-ink) / 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
 *:focus-visible {
   outline: 2px solid hsl(var(--lumox-primary));

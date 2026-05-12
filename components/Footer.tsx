@@ -1,14 +1,12 @@
 import Link from "next/link";
+import { LumoxLogo } from "@/components/brand/LumoxLogo";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-bg">
-      <div className="container-prose grid gap-8 py-10 md:grid-cols-4">
+    <footer className="relative z-10 border-t border-white/10 bg-bg">
+      <div className="site-container grid gap-8 py-10 md:grid-cols-4">
         <div className="space-y-3">
-          <div className="flex items-center gap-3">
-            <span className="h-3 w-3 rounded-full bg-primary shadow-[0_0_18px_hsl(var(--lumox-primary))]" />
-            <span className="text-sm font-semibold">Lumox Technologies</span>
-          </div>
+          <LumoxLogo />
           <p className="text-sm leading-6 text-ink/64">
             Practical websites, web applications, automation tools, AI systems, and technical consulting for Canberra and Australian businesses.
           </p>
