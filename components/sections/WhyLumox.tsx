@@ -7,11 +7,11 @@ import { LumoxCore } from "@/components/animations/LumoxCore";
 import { SiteContainer } from "@/components/layout/SiteContainer";
 
 const reasons = [
-  "Practical engineering decisions",
-  "Clean communication",
+  "Practical engineering",
+  "Clear communication",
   "Fast iteration",
   "AI and web capability",
-  "Built for real business use",
+  "Business-focused delivery",
 ];
 
 const layers = ["Strategy", "Design", "Build", "Improve"];

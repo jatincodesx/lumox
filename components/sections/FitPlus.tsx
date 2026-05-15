@@ -9,9 +9,9 @@ import { LumoxCore } from "@/components/animations/LumoxCore";
 import { SiteContainer } from "@/components/layout/SiteContainer";
 import { buttonVariants } from "@/components/ui/button";
 
-const FITPLUS_URL = "#";
+const FITPLUS_URL = "https://fitplus-app.jatin-a2c.workers.dev";
 
-const chips = ["Workout planning", "Meal tracking", "Progress insights", "Consistency tools"];
+const chips = ["Workout Planning", "Meal Tracking", "Progress Insights", "Consistency Tools"];
 const productStats: Array<[LucideIcon, string, string]> = [
   [Dumbbell, "Workouts", "4 sessions planned"],
   [Utensils, "Meals", "28 meals organised"],

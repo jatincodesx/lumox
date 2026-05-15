@@ -7,7 +7,7 @@ const buttonStyles = cva(
   {
     variants: {
       variant: {
-        primary: "bg-primary px-4 py-2 text-slate-950 shadow-[0_0_28px_hsl(var(--lumox-primary)/0.25)] hover:bg-primary/90",
+        primary: "bg-primary px-4 py-2 text-white shadow-[0_0_28px_hsl(var(--lumox-primary)/0.25)] hover:bg-primary/90",
         outline:
           "border border-white/15 bg-white/[0.03] px-4 py-2 text-ink hover:border-primary/45 hover:bg-primary/10",
         ghost: "px-3 py-2 text-primary hover:bg-primary/10",

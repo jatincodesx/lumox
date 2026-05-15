@@ -1,13 +1,13 @@
 # Lumox Redesign Notes
 
-Branch: `redesign/dark-scroll-story-lumox-v2`
+Branch: `redesign/lumox-brand-cinematic`
 
 ## Brand Assets Selected
 
 - Navbar and footer mark: `public/brand/lumox-logo-white-512.png`
 - JSON-LD logo: `public/brand/lumox-logo-white-1024.png`
 - Favicons: `public/favicon-16x16.png`, `public/favicon-32x32.png`
-- Apple touch icon: `public/apple-touch-icon.png`
+- Apple touch icons: `public/apple-touch-icon.png`, `public/apple-touch-icon-precomposed.png`
 - Open Graph image: `public/og.png`
 
 The selected UI logo is the transparent white mark from the brand kit. It was chosen because it has strong contrast on the dark site background, avoids white boxes, and remains crisp at navbar/footer sizes. SVG would be preferred, but the audited brand kit did not include SVG logo files.
@@ -17,7 +17,7 @@ The selected UI logo is the transparent white mark from the brand kit. It was ch
 - Background: near-black `#020617` equivalent through `--lumox-bg`.
 - Deep navy: `#001A37` equivalent through the navy brand asset and dark surface tokens.
 - Primary blue: brand blue close to `#0057B8`.
-- Accent: restrained cyan-blue for glows, labels, rails, and interactive highlights.
+- Accent: brand blue `#3B82F6` for glows, labels, rails, and interactive highlights.
 - Text: near-white primary text with cool secondary grey.
 - Cards: dark glass surfaces with subtle blue/white borders.
 
@@ -29,7 +29,7 @@ The homepage now uses a continuous Lumox Core motion language across the full pa
 
 - Global `ScrollOrchestrator` adds a scroll-linked progress rail, moving grid, and page-level blue light field.
 - `LumoxCore` is reusable and changes by section variant: hero, services, process, product, modules, layers, and beam.
-- Hero uses staggered text entry, scroll-linked core scale/position, and animated grid paths.
+- Hero uses staggered text entry, `AnimatePresence` typing animation, scroll-linked core scale/position, and animated grid paths.
 - Services uses a sticky core and connected service cards with scroll-aware reveals.
 - Scroll Story keeps the original advanced sticky direction but now uses the same Lumox Core visual language.
 - FitPlus transforms the core into a product dashboard moment with animated app stats and feature chips.
@@ -37,7 +37,12 @@ The homepage now uses a continuous Lumox Core motion language across the full pa
 - Why Lumox resolves into Strategy, Design, Build, Improve layers around the core.
 - Contact resolves the system into a focused light beam and final CTA.
 
-Framer Motion features used across the site include `useScroll`, `useTransform`, `useSpring`, `useMotionValueEvent`, sticky sections, parallax layers, scroll-linked scale/rotation/translation, staggered content reveals, and reduced-motion fallbacks.
+Framer Motion features used across the site include `useScroll`, `useTransform`, `useSpring`, `AnimatePresence`, `useMotionValueEvent`, sticky sections, parallax layers, scroll-linked scale/rotation/translation, staggered content reveals, and reduced-motion fallbacks.
+
+## FitPlus Section
+
+- The product CTA now points to `https://fitplus-app.jatin-a2c.workers.dev`.
+- The section presents FitPlus as a premium Lumox product showcase with animated app-stat cards and feature chips for Workout Planning, Meal Tracking, Progress Insights, and Consistency Tools.
 
 ## Alignment Fixes
 
@@ -72,7 +77,7 @@ Framer Motion features used across the site include `useScroll`, `useTransform`,
 
 ## Build Result
 
-- `npm install`: not run because `node_modules` was already present.
+- `npm install`: attempted, but npm 11.6.0 on Node 24.9.0 failed in npm Arborist with `Cannot read properties of null (reading 'matches')` while traversing the existing pnpm-style install.
 - `npm run lint`: passed.
 - `npm run typecheck`: passed.
 - `npm run build`: passed. Next generated all static app routes successfully.
@@ -80,9 +85,8 @@ Framer Motion features used across the site include `useScroll`, `useTransform`,
 Browser preview notes:
 
 - Desktop preview at `http://localhost:3020/` verified dark hero rendering, navbar logo visibility, real HTML content, and no visible white sections in the checked viewport.
-- The in-app browser later blocked new localhost navigation attempts due to its local browser policy, so final mobile visual verification could not be completed there.
+- Mobile preview at `390x844` verified readable stacked content, the live FitPlus link, and no horizontal overflow (`documentElement.scrollWidth` stayed at `390`).
 
 ## Remaining TODOs
 
-- Replace `FITPLUS_URL = "#"` in `components/sections/FitPlus.tsx` when the live FitPlus URL is available.
 - If a clean SVG logo export is later added to the brand kit, replace the PNG nav/footer mark with SVG.

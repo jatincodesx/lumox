@@ -7,14 +7,14 @@
 
 :root {
   color-scheme: dark;
-  --lumox-bg:        222 84% 5%;
-  --lumox-ink:       213 38% 96%;
-  --lumox-primary:   211 100% 36%;
-  --lumox-secondary: 205 100% 58%;
-  --lumox-accent:    188 94% 59%;
+  --lumox-bg:        222 84% 5%;   /* #020617 */
+  --lumox-ink:       210 40% 98%;  /* #f8fafc */
+  --lumox-primary:   211 100% 36%; /* #0057b8 */
+  --lumox-secondary: 217 91% 60%;  /* #3b82f6 */
+  --lumox-accent:    217 91% 60%;  /* #3b82f6 */
   --lumox-warm:      0 0% 100%;
-  --lumox-muted:     218 28% 20%;
-  --lumox-soft:      215 77% 8%;
+  --lumox-muted:     215 20% 65%;  /* #94a3b8 */
+  --lumox-soft:      220 49% 8%;   /* #0b1220 */
 }
 
 .dark {

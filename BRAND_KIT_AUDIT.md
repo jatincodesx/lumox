@@ -1,6 +1,6 @@
 # Lumox Brand Kit Audit
 
-Branch: `redesign/dark-scroll-story-lumox-v2`
+Branch: `redesign/lumox-brand-cinematic`
 
 Audited folder: `/Users/jatinvohra/Documents/VSC/lumox_main/lumox_enterprise_brand_kit`
 
@@ -68,6 +68,11 @@ Primary dark-site logo:
 - Source: `lumox_enterprise_brand_kit/png/lumox-logo-white-512.png`
 - Reason: transparent PNG, crisp at UI sizes, white mark has strong contrast on the dark Lumox background.
 
+Primary SVG/vector source for dark backgrounds:
+
+- `lumox_enterprise_brand_kit/vector/lumox-logo-white.pdf`
+- Reason: the kit does not include SVG exports. This white vector PDF is the best source asset for a future SVG export, while the site uses the transparent PNG equivalent for production UI compatibility.
+
 Dark-background logo:
 
 - `public/brand/lumox-logo-white-512.png`
@@ -82,6 +87,7 @@ Light-background logo, if needed later:
 Icon-only mark:
 
 - `public/brand/lumox-logo-white-512.png`
+- Source: `lumox_enterprise_brand_kit/png/lumox-logo-white-512.png`
 - Reason: stronger dark-mode contrast than the navy or black marks.
 
 Favicon:
@@ -93,6 +99,7 @@ Favicon:
 Apple touch icon:
 
 - `public/apple-touch-icon.png`
+- `public/apple-touch-icon-precomposed.png`
 - Source: `lumox_enterprise_brand_kit/favicon/apple-touch-icon.png`
 
 Open Graph/social preview:
@@ -116,4 +123,4 @@ Open Graph/social preview:
 - The selected white transparent mark has excellent contrast on the site background and dark glass cards.
 - Navy and black transparent marks fail contrast on dark navy/black surfaces.
 - Large RGB wordmark/primary/accent files do not have transparent backgrounds, so they should not be placed over the dark UI.
-- SVG would be preferred over PNG for nav/footer marks if a clean SVG export becomes available. Because the kit did not include SVG logos, the transparent white PNG mark was selected.
+- SVG would be preferred over PNG for nav/footer marks if a clean SVG export becomes available. Because the audited kit did not include SVG logos, the transparent white PNG mark was selected and the white PDF was recorded as the best vector source.
