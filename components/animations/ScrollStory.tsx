@@ -56,7 +56,7 @@ export function ScrollStory() {
     return (
       <section id="process" className="section relative z-10">
         <div className="max-w-3xl">
-          <div className="eyebrow">Scroll story</div>
+          <div className="eyebrow">Process</div>
           <h2 className="mt-3 text-3xl font-semibold md:text-5xl">From scattered tools to intelligent systems</h2>
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-4">

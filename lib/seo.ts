@@ -8,15 +8,14 @@ export const ORG = {
 };
 
 export const NAV = [
-  { href: "/#services", label: "Services" },
-  { href: "/#work", label: "Work" },
-  { href: "/#fitplus", label: "Products" },
-  { href: "/#process", label: "Process" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/services", label: "Services" },
+  { href: "/work", label: "Work" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export const ROUTES = [
-  "/", "/services", "/projects", "/about", "/contact",
+  "/", "/services", "/work", "/projects", "/products", "/products/fitplus", "/about", "/contact",
   "/privacy", "/terms", "/careers",
 ];
 

@@ -10,25 +10,25 @@ export function ProjectsGrid() {
         "FitPlus is a featured Lumox product designed to help users plan workouts, manage meals, track progress, and stay consistent with their health goals.",
     },
     {
-      title: "SafeView",
+      title: "Business website systems",
       summary:
-        "Privacy-first childcare video with per-child secure streams and audit trails.",
+        "Positioning, page structure, responsive implementation, SEO basics, and enquiry paths.",
       details:
-        "Per-child streams visible only to approved guardians. On-prem or private cloud. Optional face-masking for bystanders, admin-friendly audit logs, and educator-friendly controls.",
+        "Lumox can design and build practical websites that explain the offer clearly, support trust, and guide visitors towards the next useful action.",
     },
     {
-      title: "Kipla",
+      title: "Automation dashboards",
       summary:
-        "Home-services marketplace MVP for AU: bookings, provider onboarding, reviews.",
+        "Operational views that connect workflows, reduce manual tracking, and make status easier to understand.",
       details:
-        "Providers list services and availability. Customers book, review, and rebook. Built on a free-first stack with pragmatic guardrails for growth.",
+        "Lumox can build dashboards and internal tools around existing business processes, integrations, and reporting needs.",
     },
     {
-      title: "SpotlightPlus",
+      title: "AI-assisted business tools",
       summary:
-        "Intelligent camera spotlighting: auto-frame the subject, blur bystanders.",
+        "Focused AI features for drafting, search, classification, review, and repeatable knowledge work.",
       details:
-        "Local control and clear on-device UX. Smart framing that reduces distraction while respecting privacy.",
+        "Lumox can add useful AI to business workflows where human review, clear inputs, and practical controls remain part of the system.",
     },
   ];
   return (

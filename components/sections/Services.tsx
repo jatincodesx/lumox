@@ -27,37 +27,37 @@ const services: Service[] = [
     title: "Business Websites",
     text: "Clear, fast public sites that explain your offer, build trust, and make enquiry paths obvious.",
     icon: BriefcaseBusiness,
-    href: "/#contact",
+    href: "/contact",
   },
   {
     title: "Web Applications",
     text: "Portals, dashboards, booking flows, admin tools, and custom systems shaped around how your team works.",
     icon: Code2,
-    href: "/#contact",
+    href: "/contact",
   },
   {
     title: "AI Tools",
     text: "Useful AI for drafting, search, classification, analysis, and internal productivity where it fits the workflow.",
     icon: Bot,
-    href: "/#contact",
+    href: "/contact",
   },
   {
     title: "Workflow Automation",
     text: "Cleaner handoffs, connected tools, fewer manual steps, and better visibility without unnecessary complexity.",
     icon: Workflow,
-    href: "/#contact",
+    href: "/contact",
   },
   {
     title: "Digital Product Development",
     text: "MVPs and product iterations that move from idea to usable software with practical engineering decisions.",
     icon: Layers3,
-    href: "/#fitplus",
+    href: "/products",
   },
   {
     title: "Technical Consulting",
     text: "Architecture, scoping, code reviews, integration planning, and delivery guidance before bigger investment.",
     icon: MessageSquareText,
-    href: "/#contact",
+    href: "/contact",
   },
 ];
 

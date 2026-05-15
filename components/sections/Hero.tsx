@@ -6,6 +6,7 @@ import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "fr
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { LumoxCore } from "@/components/animations/LumoxCore";
 import { OrbitCards } from "@/components/animations/OrbitCards";
+import { HeroTypewriter } from "@/components/animations/HeroTypewriter";
 import { TypingText } from "@/components/animations/TypingText";
 import { SiteContainer } from "@/components/layout/SiteContainer";
 import { buttonVariants } from "@/components/ui/button";
@@ -19,11 +20,11 @@ const typingWords = [
 ];
 
 const capabilityChips = [
-  { title: "Websites", href: "/#services" },
-  { title: "Web Apps", href: "/#services" },
-  { title: "AI Tools", href: "/#services" },
-  { title: "Automation", href: "/#services" },
-  { title: "Products", href: "/#fitplus" },
+  { title: "Websites", href: "/services" },
+  { title: "Web Apps", href: "/services" },
+  { title: "AI Tools", href: "/services" },
+  { title: "Automation", href: "/services" },
+  { title: "Products", href: "/products" },
 ];
 
 const heroGroup = {
@@ -74,14 +75,14 @@ export function Hero() {
             className="mt-4 max-w-4xl text-4xl font-semibold leading-tight md:text-6xl"
             variants={heroItem}
           >
-            Digital systems, websites, and AI tools built for real business outcomes.
+            <HeroTypewriter />
           </motion.h1>
           <motion.div
-            className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-medium text-muted md:text-base"
+            className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-2 text-sm font-medium leading-none text-muted md:text-base"
             variants={heroItem}
             aria-live="polite"
           >
-            <span>Building</span>
+            <span className="leading-none">Building</span>
             <TypingText words={typingWords} />
           </motion.div>
           <motion.p
@@ -95,11 +96,11 @@ export function Hero() {
             className="mt-8 flex flex-col gap-3 sm:flex-row"
             variants={heroItem}
           >
-            <Link href="/#contact" className={buttonVariants({ variant: "primary", size: "lg" })}>
+            <Link href="/contact" className={buttonVariants({ variant: "primary", size: "lg" })}>
               Start a Project
               <ArrowRight size={18} aria-hidden="true" />
             </Link>
-            <Link href="/#work" className={buttonVariants({ variant: "outline", size: "lg" })}>
+            <Link href="/work" className={buttonVariants({ variant: "outline", size: "lg" })}>
               View Work
             </Link>
           </motion.div>
@@ -123,7 +124,7 @@ export function Hero() {
             <OrbitCards items={capabilityChips} progress={smooth} variant="chips" />
           </div>
           <div className="absolute inset-x-4 bottom-0 hidden rounded-lg border border-white/10 bg-bg/72 p-4 backdrop-blur md:inset-x-12 md:block">
-            <p className="text-sm font-medium">Light emerging from structure</p>
+            <p className="text-sm font-medium">Connected delivery system</p>
             <p className="mt-1 text-xs leading-5 text-ink/62">
               Connected websites, products, automations, and AI workflows.
             </p>

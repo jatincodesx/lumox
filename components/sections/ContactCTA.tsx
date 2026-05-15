@@ -34,7 +34,7 @@ export function ContactCTA() {
                 Share the website, app, automation, or AI workflow you want to improve. Lumox will respond with a practical next step.
               </p>
               <div className="mt-8">
-                <Link href="mailto:jatin@jatinvohra.com" className={buttonVariants({ variant: "warm", size: "lg" })}>
+                <Link href="/contact" className={buttonVariants({ variant: "warm", size: "lg" })}>
                   Start a Project
                   <ArrowRight size={18} aria-hidden="true" />
                 </Link>

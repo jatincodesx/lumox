@@ -4,34 +4,34 @@ import type { LucideIcon } from "lucide-react";
 
 const services: Array<{ title: string; text: string; icon: LucideIcon }> = [
   {
-    title: "Business websites",
-    text: "Professional sites for service businesses, product launches, and clearer online positioning.",
+    title: "Website design and rebuilds",
+    text: "Clear, fast sites for service businesses, launches, and established brands that need sharper positioning.",
     icon: BriefcaseBusiness,
   },
   {
-    title: "Web applications",
-    text: "Custom portals, dashboards, booking flows, admin tools, and internal business systems.",
+    title: "Custom web applications",
+    text: "Portals, booking flows, admin tools, internal systems, and client-facing software shaped around real workflows.",
     icon: Code2,
   },
   {
-    title: "AI-powered tools",
-    text: "Useful AI features for drafting, search, triage, classification, and repeatable knowledge work.",
+    title: "AI tools and automation",
+    text: "Useful AI features for drafting, search, triage, classification, repeatable knowledge work, and workflow support.",
     icon: Bot,
   },
   {
-    title: "Workflow automation",
-    text: "Automation that connects tools, reduces manual handling, and improves operational visibility.",
+    title: "Digital product MVPs",
+    text: "Early product builds and iterations designed to become usable software, not just attractive prototypes.",
+    icon: Layers3,
+  },
+  {
+    title: "Dashboards and integrations",
+    text: "Operational dashboards, connected tools, cleaner handoffs, and better visibility across business systems.",
     icon: Workflow,
   },
   {
-    title: "Technical consulting",
-    text: "Architecture, scoping, code review, integration planning, and delivery advice before you overbuild.",
+    title: "Ongoing improvement and support",
+    text: "Technical direction, refinement, maintenance, measurement, and practical support after launch.",
     icon: MessageSquareText,
-  },
-  {
-    title: "Digital product development",
-    text: "MVPs and product iterations designed to become usable software, not just attractive mockups.",
-    icon: Layers3,
   },
 ];
 

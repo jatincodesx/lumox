@@ -11,22 +11,22 @@ const capabilities = [
   {
     title: "Business website systems",
     text: "Positioning, page structure, technical SEO, and conversion paths for service businesses.",
-    href: "/#contact",
+    href: "/contact",
   },
   {
     title: "AI document and product tools",
     text: "Interfaces that apply AI to real inputs, review loops, and repeatable business tasks.",
-    href: "/#contact",
+    href: "/contact",
   },
   {
     title: "Automation dashboards",
     text: "Operational views that connect steps, reduce manual updates, and make status easier to see.",
-    href: "/#contact",
+    href: "/contact",
   },
   {
     title: "Fitness platform development",
     text: "Product thinking and app development patterns from the FitPlus health and nutrition platform.",
-    href: "/#fitplus",
+    href: "/products/fitplus",
   },
 ];
 

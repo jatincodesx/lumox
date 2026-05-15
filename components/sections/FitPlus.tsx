@@ -117,7 +117,7 @@ export function FitPlus() {
               View FitPlus
               <ArrowRight size={18} aria-hidden="true" />
             </Link>
-            <Link href="/#contact" className={buttonVariants({ variant: "outline", size: "lg" })}>
+            <Link href="/contact" className={buttonVariants({ variant: "outline", size: "lg" })}>
               Build a Product with Lumox
             </Link>
           </div>

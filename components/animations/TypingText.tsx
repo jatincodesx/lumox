@@ -33,11 +33,13 @@ export function TypingText({
   }, [interval, reduceMotion, words.length]);
 
   return (
-    <span className={`relative inline-grid h-7 place-items-start overflow-hidden text-accent ${minWidthClassName} ${className ?? ""}`}>
+    <span
+      className={`relative inline-flex h-[1.18em] items-baseline overflow-hidden align-baseline leading-none text-accent ${minWidthClassName} ${className ?? ""}`}
+    >
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
           key={activeWord}
-          className="absolute left-0 top-0"
+          className="absolute bottom-0 left-0 whitespace-nowrap leading-none"
           initial={reduceMotion ? false : { opacity: 0, y: 14, filter: "blur(7px)" }}
           animate={reduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
           exit={reduceMotion ? undefined : { opacity: 0, y: -14, filter: "blur(7px)" }}

@@ -1,9 +1,8 @@
 export function Timeline() {
   const items = [
-    { date: "2024", title: "Foundations", text: "Established Lumox to focus on reliable software and networks." },
-    { date: "2025", title: "SafeView pilot", text: "Privacy-first childcare video pilot with audit trails." },
-    { date: "2025", title: "Kipla MVP", text: "Launched AU home-services MVP with free-first stack." },
-    { date: "2025", title: "SpotlightPlus", text: "Smart framing prototype with local controls." }
+    { date: "2024", title: "Foundations", text: "Established Lumox to focus on practical digital delivery." },
+    { date: "2025", title: "FitPlus", text: "Fitness and nutrition platform under Products by Lumox." },
+    { date: "Now", title: "Focused delivery", text: "Websites, AI-enabled tools, automations, dashboards, and product MVPs." }
   ];
   return (
     <ol className="relative border-s border-muted/60 pl-6 space-y-6">
