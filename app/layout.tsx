@@ -93,7 +93,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className="min-h-screen overflow-x-hidden bg-bg text-ink antialiased">
+      <body className="min-h-screen overflow-x-clip bg-bg text-ink antialiased">
         <JsonLd schema={jsonLdSchemas} />
         <ClientProviders>
           <Navbar />

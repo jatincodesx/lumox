@@ -10,7 +10,7 @@ export const ORG = {
 export const NAV = [
   { href: "/#services", label: "Services" },
   { href: "/#work", label: "Work" },
-  { href: "/#fitplus", label: "FitPlus" },
+  { href: "/#fitplus", label: "Products" },
   { href: "/#process", label: "Process" },
   { href: "/#contact", label: "Contact" },
 ];

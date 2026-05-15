@@ -12,13 +12,14 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { LumoxCore } from "@/components/animations/LumoxCore";
-import { MotionCard } from "@/components/animations/MotionCard";
+import { OrbitCards } from "@/components/animations/OrbitCards";
 import { SiteContainer } from "@/components/layout/SiteContainer";
 
 type Service = {
   title: string;
   text: string;
   icon: LucideIcon;
+  href: string;
 };
 
 const services: Service[] = [
@@ -26,31 +27,37 @@ const services: Service[] = [
     title: "Business Websites",
     text: "Clear, fast public sites that explain your offer, build trust, and make enquiry paths obvious.",
     icon: BriefcaseBusiness,
+    href: "/#contact",
   },
   {
     title: "Web Applications",
     text: "Portals, dashboards, booking flows, admin tools, and custom systems shaped around how your team works.",
     icon: Code2,
+    href: "/#contact",
   },
   {
     title: "AI Tools",
     text: "Useful AI for drafting, search, classification, analysis, and internal productivity where it fits the workflow.",
     icon: Bot,
+    href: "/#contact",
   },
   {
     title: "Workflow Automation",
     text: "Cleaner handoffs, connected tools, fewer manual steps, and better visibility without unnecessary complexity.",
     icon: Workflow,
+    href: "/#contact",
   },
   {
     title: "Digital Product Development",
     text: "MVPs and product iterations that move from idea to usable software with practical engineering decisions.",
     icon: Layers3,
+    href: "/#fitplus",
   },
   {
     title: "Technical Consulting",
     text: "Architecture, scoping, code reviews, integration planning, and delivery guidance before bigger investment.",
     icon: MessageSquareText,
+    href: "/#contact",
   },
 ];
 
@@ -59,38 +66,28 @@ export function Services() {
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 75%", "end 25%"] });
   const smooth = useSpring(scrollYProgress, { stiffness: 82, damping: 22, mass: 0.35 });
-  const coreY = useTransform(smooth, [0, 1], [40, -42]);
+  const coreY = useTransform(smooth, [0, 0.5, 1], [36, 0, -34]);
+  const coreScale = useTransform(smooth, [0, 0.45, 1], [0.9, 1.08, 0.96]);
 
   return (
-    <section ref={ref} id="services" className="relative z-10">
-      <SiteContainer className="grid gap-12 py-20 md:py-28 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-        <div className="lg:sticky lg:top-28">
+    <section ref={ref} id="services" className="section-band relative z-10 overflow-hidden">
+      <SiteContainer className="py-16 md:py-24">
+        <div className="mx-auto max-w-3xl text-center">
           <div className="eyebrow">Services</div>
-          <h2 className="section-heading mt-3">Practical digital systems, built with focus.</h2>
-          <p className="section-copy mt-5">
+          <h2 className="mt-3 text-3xl font-semibold leading-tight md:text-5xl">Practical digital systems, built around one core.</h2>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-ink/70">
             Lumox works across websites, applications, automation, and AI because real business problems rarely fit into one narrow label.
           </p>
-          <motion.div className="mt-8 hidden lg:block" style={reduceMotion ? undefined : { y: coreY }}>
-            <LumoxCore variant="services" progress={smooth} compact />
-          </motion.div>
         </div>
 
-        <div className="relative">
-          <motion.div className="mb-8 lg:hidden" style={reduceMotion ? undefined : { y: coreY }}>
-            <LumoxCore variant="services" progress={smooth} compact />
+        <div className="relative mt-12 lg:min-h-[56rem]">
+          <motion.div
+            className="relative z-10 mx-auto mb-8 flex justify-center lg:absolute lg:inset-0 lg:mb-0 lg:grid lg:place-items-center"
+            style={reduceMotion ? undefined : { y: coreY, scale: coreScale }}
+          >
+            <LumoxCore variant="services" progress={smooth} compact className="lg:h-96 lg:w-96" />
           </motion.div>
-          <div className="grid auto-rows-fr gap-5 md:grid-cols-2">
-            {services.map(({ title, text, icon: Icon }, index) => (
-              <MotionCard key={title} index={index} className={index % 2 ? "md:mt-8" : ""}>
-                <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-primary/25 bg-primary/10 text-accent">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </div>
-                <h3 className="mt-5 text-xl font-semibold">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-ink/68">{text}</p>
-                <div className="mt-auto pt-6 text-xs font-semibold text-primary/80">Connected to the Lumox Core</div>
-              </MotionCard>
-            ))}
-          </div>
+          <OrbitCards items={services} progress={smooth} variant="services" />
         </div>
       </SiteContainer>
     </section>

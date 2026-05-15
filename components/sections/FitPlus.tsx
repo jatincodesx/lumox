@@ -37,7 +37,13 @@ export function FitPlus() {
         >
           <div className="absolute inset-x-10 top-4 h-40 rounded-full bg-accent/18 blur-3xl" />
           <LumoxCore variant="product" progress={smooth} className="absolute -top-16 left-1/2 hidden -translate-x-1/2 opacity-75 lg:flex" compact />
-          <div className="relative mx-auto max-w-xl rounded-lg border border-white/10 bg-white/[0.04] p-4 shadow-[0_0_90px_rgba(0,0,0,0.32)] backdrop-blur">
+          <Link
+            href={FITPLUS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open FitPlus fitness and nutrition platform"
+            className="group relative mx-auto block max-w-xl rounded-lg border border-white/10 bg-white/[0.04] p-4 shadow-[0_0_90px_rgba(0,0,0,0.32)] backdrop-blur transition hover:-translate-y-1 hover:border-primary/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
             <div className="rounded-lg border border-white/10 bg-bg/86 p-5">
               <div className="flex items-center justify-between border-b border-white/10 pb-5">
                 <div>
@@ -63,7 +69,7 @@ export function FitPlus() {
                 ))}
               </div>
             </div>
-          </div>
+          </Link>
           <div className="pointer-events-none absolute inset-x-0 top-8 hidden h-full md:block">
             {chips.map((chip, index) => (
               <motion.span
@@ -88,11 +94,11 @@ export function FitPlus() {
         </motion.div>
 
         <div className="order-1 lg:order-2">
-          <div className="eyebrow">FitPlus product</div>
-          <h2 className="section-heading mt-3">A real product focus under the Lumox umbrella.</h2>
+          <div className="eyebrow">Products by Lumox</div>
+          <h2 className="section-heading mt-3">FitPlus</h2>
           <p className="section-copy mt-5">
-            FitPlus is a fitness and nutrition platform designed to help users plan workouts, manage meals,
-            track progress, and stay consistent with their health goals.
+            FitPlus is a Lumox-built fitness and nutrition platform designed for structured workout planning,
+            meal tracking, progress visibility, and long-term consistency.
           </p>
           <div className="mt-6 flex flex-wrap gap-2 md:hidden">
             {chips.map((chip) => (
@@ -102,12 +108,17 @@ export function FitPlus() {
             ))}
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href={FITPLUS_URL} className={buttonVariants({ variant: "primary", size: "lg" })}>
+            <Link
+              href={FITPLUS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonVariants({ variant: "primary", size: "lg" })}
+            >
               View FitPlus
               <ArrowRight size={18} aria-hidden="true" />
             </Link>
             <Link href="/#contact" className={buttonVariants({ variant: "outline", size: "lg" })}>
-              Talk to Lumox
+              Build a Product with Lumox
             </Link>
           </div>
         </div>

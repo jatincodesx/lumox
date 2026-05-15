@@ -44,42 +44,49 @@ export function LumoxCore({
   const reduceMotion = useReducedMotion();
   const fallbackProgress = useMotionValue(0);
   const source = progress ?? fallbackProgress;
-  const rotate = useTransform(source, [0, 1], variant === "beam" ? [-8, 8] : [-18, 42]);
-  const scale = useTransform(source, [0, 0.5, 1], compact ? [0.9, 1.02, 0.94] : [0.86, 1.08, 0.96]);
-  const y = useTransform(source, [0, 1], [18, -18]);
-  const beamScale = useTransform(source, [0, 1], [0.25, 1]);
-  const beamOpacity = useTransform(source, [0, 0.55, 1], [0.15, 0.5, 0.9]);
+  const rotateY = useTransform(source, [0, 1], variant === "beam" ? [-18, 18] : [-12, 344]);
+  const rotateZ = useTransform(source, [0, 0.5, 1], variant === "beam" ? [-5, 0, 5] : [-10, 8, -6]);
+  const ringRotate = useTransform(source, [0, 1], [0, -220]);
+  const scale = useTransform(source, [0, 0.5, 1], compact ? [0.92, 1.08, 0.96] : [0.88, 1.12, 0.98]);
+  const y = useTransform(source, [0, 1], [22, -22]);
+  const beamScale = useTransform(source, [0, 1], [0.2, 1.08]);
+  const beamOpacity = useTransform(source, [0, 0.45, 1], [0.18, 0.62, 0.95]);
   const activeLabels = labels ?? variantNodes[variant];
-  const size = compact ? "h-72 w-72" : "h-[22rem] w-full max-w-[34rem]";
+  const size = compact ? "h-72 w-72" : "h-[23rem] w-full max-w-[36rem] md:h-[30rem]";
 
   return (
-    <div className={cn("relative mx-auto flex items-center justify-center", size, className)} aria-hidden="true">
+    <div className={cn("relative mx-auto flex items-center justify-center [perspective:1000px]", size, className)} aria-hidden="true">
       <motion.div
-        className="absolute h-[58%] w-[82%] rounded-full bg-primary/20 blur-3xl"
+        className="absolute h-[58%] w-[88%] rounded-full bg-primary/24 blur-3xl"
         style={reduceMotion ? undefined : { scaleX: beamScale, opacity: beamOpacity }}
       />
       <motion.div
-        className="absolute h-[86%] w-[86%] rounded-full border border-primary/18"
-        animate={reduceMotion ? undefined : { rotate: 360 }}
-        transition={{ duration: 34, repeat: Infinity, ease: "linear" }}
+        className="absolute h-[88%] w-[88%] rounded-full border border-primary/20"
+        style={reduceMotion ? undefined : { rotate: ringRotate }}
       />
       <motion.div
-        className="absolute h-[66%] w-[66%] rounded-[2rem] border border-accent/18"
+        className="absolute h-[70%] w-[70%] rounded-[2rem] border border-accent/22"
         animate={reduceMotion ? undefined : { rotate: -360 }}
-        transition={{ duration: 46, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      />
+      <motion.div
+        className="absolute h-[42%] w-[92%] rounded-full border border-white/10"
+        animate={reduceMotion ? undefined : { rotate: 360 }}
+        transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
       />
 
       <motion.div
         className={cn(
-          "relative grid place-items-center rounded-[2rem] border border-white/14 bg-white/[0.045] shadow-[0_0_90px_hsl(var(--lumox-primary)/0.36)] backdrop-blur-xl",
-          compact ? "h-32 w-32" : "h-40 w-40",
+          "relative grid transform-gpu place-items-center rounded-[2rem] border border-white/16 bg-[linear-gradient(145deg,rgba(255,255,255,0.12),rgba(255,255,255,0.025))] shadow-[0_0_110px_hsl(var(--lumox-primary)/0.42)] backdrop-blur-xl",
+          compact ? "h-32 w-32" : "h-44 w-44 md:h-52 md:w-52",
           variant === "product" && "rounded-xl",
           variant === "beam" && "shadow-[0_0_120px_hsl(var(--lumox-accent)/0.4)]",
         )}
-        style={reduceMotion ? undefined : { rotate, scale, y }}
+        style={reduceMotion ? undefined : { rotateY, rotateZ, scale, y }}
       >
-        <div className="absolute inset-4 rounded-[1.35rem] border border-primary/28" />
-        <BrandMark className={compact ? "h-12 w-12" : "h-14 w-14"} />
+        <div className="absolute inset-4 rounded-[1.35rem] border border-primary/34" />
+        <div className="absolute inset-7 rounded-[1rem] bg-primary/12 blur-xl" />
+        <BrandMark className={compact ? "relative h-12 w-12" : "relative h-16 w-16"} />
         <span className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent shadow-[0_0_34px_hsl(var(--lumox-accent))]" />
       </motion.div>
 
@@ -91,7 +98,7 @@ export function LumoxCore({
           <motion.div
             key={`${label}-${index}`}
             className={cn(
-              "absolute rounded-lg border border-white/12 bg-bg/78 px-3 py-2 text-xs font-medium text-ink/82 shadow-[0_16px_40px_rgba(0,0,0,0.28)] backdrop-blur",
+              "absolute rounded-lg border border-white/12 bg-bg/82 px-3 py-2 text-xs font-medium text-ink/82 shadow-[0_16px_40px_rgba(0,0,0,0.28)] backdrop-blur",
               position,
             )}
             initial={reduceMotion ? false : { opacity: 0, scale: 0.86 }}

@@ -40,12 +40,13 @@ export function ScrollStory() {
     offset: ["start start", "end end"],
   });
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 90, damping: 24, mass: 0.35 });
-  const rotate = useTransform(smoothProgress, [0, 1], [0, 175]);
-  const scale = useTransform(smoothProgress, [0, 0.36, 0.68, 1], [0.86, 1.08, 1.16, 0.92]);
-  const beamScale = useTransform(smoothProgress, [0.68, 1], [0.15, 1]);
-  const beamOpacity = useTransform(smoothProgress, [0.62, 0.82, 1], [0, 0.55, 0.9]);
-  const gridY = useTransform(smoothProgress, [0, 1], [30, -70]);
-  const cardY = useTransform(smoothProgress, [0, 1], [24, -24]);
+  const rotate = useTransform(smoothProgress, [0, 1], [-18, 328]);
+  const scale = useTransform(smoothProgress, [0, 0.3, 0.68, 1], [0.84, 1.08, 1.18, 0.94]);
+  const beamScale = useTransform(smoothProgress, [0.48, 1], [0.12, 1.12]);
+  const beamOpacity = useTransform(smoothProgress, [0.4, 0.72, 1], [0, 0.58, 0.92]);
+  const gridY = useTransform(smoothProgress, [0, 1], [36, -96]);
+  const cardY = useTransform(smoothProgress, [0, 1], [30, -30]);
+  const nodeSpread = useTransform(smoothProgress, [0, 1], [0.65, 1.12]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     setActiveStage(Math.min(stages.length - 1, Math.floor(latest * stages.length)));
@@ -72,8 +73,37 @@ export function ScrollStory() {
   }
 
   return (
-    <section ref={targetRef} id="process" className="relative z-10 min-h-[420vh]">
-      <div className="sticky top-16 flex min-h-[calc(100vh-4rem)] items-center overflow-hidden border-y border-white/10 bg-soft/35">
+    <section ref={targetRef} id="process" className="relative z-10 lg:min-h-[320vh]">
+      <div className="section lg:hidden">
+        <div className="max-w-3xl">
+          <div className="eyebrow">Process</div>
+          <h2 className="mt-3 text-3xl font-semibold md:text-5xl">From scattered tools to intelligent systems</h2>
+          <p className="mt-4 text-lg leading-8 text-ink/70">
+            Lumox turns scattered ideas, tools, and workflows into a coherent digital system.
+          </p>
+        </div>
+        <div className="mt-8">
+          <LumoxCore variant="process" progress={smoothProgress} compact />
+        </div>
+        <div className="mt-8 grid gap-4">
+          {stages.map((stage, index) => (
+            <motion.article
+              key={stage.title}
+              className="rounded-lg border border-white/10 bg-white/[0.035] p-5"
+              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.42, delay: index * 0.06 }}
+            >
+              <p className="text-sm font-semibold text-primary">0{index + 1}</p>
+              <h3 className="mt-3 text-xl font-semibold">{stage.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-ink/68">{stage.text}</p>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+
+      <div className="sticky top-16 hidden min-h-[calc(100vh-4rem)] items-center overflow-hidden border-y border-white/10 bg-soft/35 lg:flex">
         <motion.div
           className="absolute inset-0 opacity-60"
           style={{ y: gridY }}
@@ -83,13 +113,16 @@ export function ScrollStory() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsl(var(--lumox-primary)/0.16),transparent_34rem)]" />
         </motion.div>
 
-        <SiteContainer className="relative z-10 grid w-full gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr_0.8fr] lg:items-center">
+        <SiteContainer className="relative z-10 grid w-full gap-10 py-16 lg:grid-cols-[0.82fr_1.18fr_0.84fr] lg:items-center">
           <div className="space-y-6">
             <div>
-              <div className="eyebrow">Scroll story</div>
+              <div className="eyebrow">Process</div>
               <h2 className="mt-3 text-3xl font-semibold leading-tight md:text-5xl">
                 From scattered tools to intelligent systems
               </h2>
+              <p className="mt-4 text-base leading-7 text-ink/66">
+                The core pulls scattered inputs into a launch-ready system as each stage takes over.
+              </p>
             </div>
             <motion.div className="hidden h-1 overflow-hidden rounded-full bg-white/10 lg:block">
               <motion.div className="h-full origin-left bg-primary" style={{ scaleX: smoothProgress }} />
@@ -101,6 +134,24 @@ export function ScrollStory() {
               className="absolute h-28 w-[28rem] origin-left rounded-full bg-primary/35 blur-3xl"
               style={{ scaleX: beamScale, opacity: beamOpacity }}
             />
+            <motion.div className="absolute inset-8 rounded-full border border-white/10" style={{ scale: nodeSpread }} />
+            {stages.map((stage, index) => (
+              <motion.div
+                key={`node-${stage.title}`}
+                className={[
+                  "absolute grid h-12 w-12 place-items-center rounded-lg border text-sm font-semibold backdrop-blur",
+                  activeStage >= index ? "border-primary/45 bg-primary/15 text-accent" : "border-white/10 bg-white/[0.035] text-ink/54",
+                  index === 0 && "left-[8%] top-1/2 -translate-y-1/2",
+                  index === 1 && "left-1/2 top-[8%] -translate-x-1/2",
+                  index === 2 && "right-[8%] top-1/2 -translate-y-1/2",
+                  index === 3 && "bottom-[8%] left-1/2 -translate-x-1/2",
+                ].filter(Boolean).join(" ")}
+                animate={{ scale: activeStage === index ? 1.16 : 1, opacity: activeStage >= index ? 1 : 0.5 }}
+                transition={{ duration: 0.3 }}
+              >
+                0{index + 1}
+              </motion.div>
+            ))}
             <motion.div style={{ rotate, scale }}>
               <LumoxCore variant="process" progress={smoothProgress} compact />
             </motion.div>

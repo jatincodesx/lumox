@@ -24,7 +24,7 @@ export function WhyLumox() {
   const layerY = useTransform(smooth, [0, 1], [24, -24]);
 
   return (
-    <section ref={ref} className="relative z-10">
+    <section ref={ref} className="relative z-10 overflow-hidden">
       <SiteContainer className="grid gap-12 py-20 md:py-28 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div className="lg:sticky lg:top-28">
           <div className="eyebrow">Why Lumox</div>

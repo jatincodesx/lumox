@@ -1,92 +1,80 @@
-# Lumox Redesign Notes
+# Redesign Notes
 
-Branch: `redesign/lumox-brand-cinematic`
+Branch: `fix/cinematic-homepage-motion-system`
+Base branch: `redesign/lumox-brand-cinematic`
 
-## Brand Assets Selected
+## Empty-Space Issue Found And Fixed
 
-- Navbar and footer mark: `public/brand/lumox-logo-white-512.png`
-- JSON-LD logo: `public/brand/lumox-logo-white-1024.png`
-- Favicons: `public/favicon-16x16.png`, `public/favicon-32x32.png`
-- Apple touch icons: `public/apple-touch-icon.png`, `public/apple-touch-icon-precomposed.png`
-- Open Graph image: `public/og.png`
+- Found: the homepage wrapper in `app/(site)/page.tsx` used `overflow-hidden`.
+- Impact: that ancestor overflow clipping broke `position: sticky` inside the process story. The browser scrolled through the tall story container while the sticky content was positioned off-screen, creating the huge empty black section.
+- Fixed: removed homepage-level overflow clipping and changed body horizontal clipping from `overflow-x-hidden` to `overflow-x-clip` in `app/layout.tsx`.
+- Also removed the extra proof band between hero and services to tighten the visual rhythm.
 
-The selected UI logo is the transparent white mark from the brand kit. It was chosen because it has strong contrast on the dark site background, avoids white boxes, and remains crisp at navbar/footer sizes. SVG would be preferred, but the audited brand kit did not include SVG logo files.
+## Animation System Changes
 
-## Color System
+- Strengthened `LumoxCore` with scroll-linked near-360-degree rotation, stronger glow, 3D-style transform, rotating rings, and section variants.
+- Added `TypingText` for reusable hero typing with reduced-motion behavior.
+- Added `OrbitCards` for orbiting/crawlable capability chips and service cards.
+- Hero now uses scroll-linked text/core movement, parallax grid motion, a visible central core, and orbiting capability chips on desktop.
+- Services now revolve around a central Lumox Core with six clickable service cards.
+- Process story now uses a working sticky four-stage scroll sequence with active stage state, progress rail, animated nodes, core rotation, beam scaling, and mobile stacked fallback.
+- Existing product, work, why, and contact sections continue the core language through product/dashboard, modules, layers, and CTA beam variants.
 
-- Background: near-black `#020617` equivalent through `--lumox-bg`.
-- Deep navy: `#001A37` equivalent through the navy brand asset and dark surface tokens.
-- Primary blue: brand blue close to `#0057B8`.
-- Accent: brand blue `#3B82F6` for glows, labels, rails, and interactive highlights.
-- Text: near-white primary text with cool secondary grey.
-- Cards: dark glass surfaces with subtle blue/white borders.
+## Clickable Fixes
 
-No light page sections were added.
+- Service cards are real anchors.
+- Work capability cards are real anchors.
+- FitPlus product mockup is a real external anchor.
+- FitPlus CTA opens the live app with `target="_blank"` and `rel="noopener noreferrer"`.
+- Navbar includes `Products` linking to the FitPlus/products section.
+- Footer product link now reads `Products by Lumox`.
+- CTA buttons remain semantic links.
 
-## Scroll Animation System
+## FitPlus Product Positioning
 
-The homepage now uses a continuous Lumox Core motion language across the full page:
+- Removed: “A real product focus under the Lumox umbrella.”
+- Products section label: `Products by Lumox`.
+- FitPlus headline: `FitPlus`.
+- New copy positions FitPlus as a Lumox-built fitness and nutrition platform for structured workout planning, meal tracking, progress visibility, and long-term consistency.
+- CTA buttons: `View FitPlus` and `Build a Product with Lumox`.
+- Live URL: `https://fitplus-app.jatin-a2c.workers.dev`.
 
-- Global `ScrollOrchestrator` adds a scroll-linked progress rail, moving grid, and page-level blue light field.
-- `LumoxCore` is reusable and changes by section variant: hero, services, process, product, modules, layers, and beam.
-- Hero uses staggered text entry, `AnimatePresence` typing animation, scroll-linked core scale/position, and animated grid paths.
-- Services uses a sticky core and connected service cards with scroll-aware reveals.
-- Scroll Story keeps the original advanced sticky direction but now uses the same Lumox Core visual language.
-- FitPlus transforms the core into a product dashboard moment with animated app stats and feature chips.
-- Work/Capabilities splits the system into capability modules with staggered cards and scroll-linked rails.
-- Why Lumox resolves into Strategy, Design, Build, Improve layers around the core.
-- Contact resolves the system into a focused light beam and final CTA.
+## SEO And Accessibility Notes
 
-Framer Motion features used across the site include `useScroll`, `useTransform`, `useSpring`, `AnimatePresence`, `useMotionValueEvent`, sticky sections, parallax layers, scroll-linked scale/rotation/translation, staggered content reveals, and reduced-motion fallbacks.
-
-## FitPlus Section
-
-- The product CTA now points to `https://fitplus-app.jatin-a2c.workers.dev`.
-- The section presents FitPlus as a premium Lumox product showcase with animated app-stat cards and feature chips for Workout Planning, Meal Tracking, Progress Insights, and Consistency Tools.
-
-## Alignment Fixes
-
-- Added shared `site-container` sizing at `max-w-7xl`.
-- Replaced mixed container widths with one container system.
-- Standardized section padding and heading/copy widths.
-- Normalized card heights with `auto-rows-fr` and full-height cards.
-- Tightened hero height so the next section is hinted instead of leaving a dead scroll zone.
-- Kept desktop text/object layouts aligned to the same left and right edges.
-- Simplified mobile behavior so objects stack above text instead of forcing wrapped desktop choreography.
-- Preserved `overflow-x-hidden` and avoided fixed-width animated objects that would create mobile horizontal scroll.
-
-## SEO And Accessibility
-
-- One H1 remains on the homepage.
-- Major service/product/process copy remains real HTML text.
-- H2/H3 hierarchy is preserved.
-- Navbar and footer logos use `alt="Lumox Technologies logo"`.
-- Metadata includes favicon, Apple touch icon, Open Graph, Twitter, and JSON-LD logo references.
-- JSON-LD rendering remains handled by the existing safe `JsonLd` component.
-- Buttons and links remain semantic keyboard-accessible controls.
-- Motion-heavy components use `useReducedMotion` fallbacks.
-- The mobile menu keeps the Radix dialog title for screen readers.
+- Homepage keeps one H1.
+- Major sections use H2s and service/product content remains real HTML.
+- No important service or product text is only in canvas/SVG.
+- Metadata title and description remain:
+  - `Lumox Technologies | Websites, AI Tools & Digital Solutions`
+  - `Lumox Technologies builds practical websites, web applications, AI-powered tools, and automation systems for businesses in Canberra and across Australia.`
+- JSON-LD, sitemap, and robots files were not broken or replaced.
+- Clickable-looking cards now use anchors with keyboard focus.
+- Motion-heavy areas respect reduced motion.
 
 ## Performance Notes
 
-- No Three.js or heavy 3D dependency was added.
-- The core visual is CSS, SVG paths, and Framer Motion transforms.
-- Animations prefer transform, opacity, scale, rotate, and filter.
-- The Open Graph image was resized to `1200x630`.
-- Static export remains configured through `next.config.js`.
+- No Three.js or heavy 3D library was added.
+- Motion is CSS/SVG/Framer based and mostly transform, opacity, scale, rotate, and path progress.
+- Static export remains configured in `next.config.js`.
+- Manual checks found no horizontal overflow on desktop or mobile.
 
 ## Build Result
 
-- `npm install`: attempted, but npm 11.6.0 on Node 24.9.0 failed in npm Arborist with `Cannot read properties of null (reading 'matches')` while traversing the existing pnpm-style install.
+- `npm install`: not needed; `node_modules` was already present.
 - `npm run lint`: passed.
 - `npm run typecheck`: passed.
-- `npm run build`: passed. Next generated all static app routes successfully.
+- `npm run build`: passed.
 
-Browser preview notes:
+## Manual Preview Result
 
-- Desktop preview at `http://localhost:3020/` verified dark hero rendering, navbar logo visibility, real HTML content, and no visible white sections in the checked viewport.
-- Mobile preview at `390x844` verified readable stacked content, the live FitPlus link, and no horizontal overflow (`documentElement.scrollWidth` stayed at `390`).
+- Local dev server: `http://localhost:3010/`.
+- Desktop hero: headline, CTAs, rotating Lumox Core, and orbit chips visible above the fold.
+- Desktop services: six service links present around the Lumox Core.
+- Desktop process story: sticky content now pins and animates instead of producing a blank scroll range.
+- Mobile hero: headline, subcopy, CTAs, and the Lumox Core are visible in the first viewport with no horizontal overflow.
+- FitPlus old copy is absent and external links use safe attributes.
 
 ## Remaining TODOs
 
-- If a clean SVG logo export is later added to the brand kit, replace the PNG nav/footer mark with SVG.
+- Preview the final branch in the real target browser/device mix before merging.
+- If the brand kit later provides an SVG logo export, consider replacing PNG logo assets with SVG for sharper scaling.

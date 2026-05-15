@@ -6,14 +6,10 @@ type BrandMarkProps = {
 
 export function BrandMark({ className }: BrandMarkProps) {
   return (
-    <img
-      src="/brand/lumox-logo-white-512.png"
-      alt="Lumox Technologies logo"
-      className={cn("h-9 w-9 object-contain", className)}
-      width={512}
-      height={512}
-      loading="eager"
-      decoding="async"
+    <span
+      aria-hidden="true"
+      className={cn("inline-block h-9 w-9 bg-contain bg-center bg-no-repeat", className)}
+      style={{ backgroundImage: "url('/brand/lumox-logo-white-512.png')" }}
     />
   );
 }
